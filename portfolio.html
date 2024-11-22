@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>varun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #081b29;
+            color: #ededed;
+            overflow-x: hidden;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background:#081b29
+            z-index: 100;
+        }
+        .logo {
+            font-size: 25px;
+            font-weight: 600;
+            color: #ededed;
+            text-decoration: none;
+        }
+        .navbar a {
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 25px;
+            color: #ededed;
+            transition: 0.3s;
+        }
+        .navbar a:hover, .navbar a.active {
+            color: #00abf0;
+        }
+        .Home {
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            padding: 0 10%;
+            background: url('home.jpg') no-repeat center/cover;
+        }
+        .home-content {
+            max-width: 600px;
+            text-align: left;
+        }
+        .home-content h1 {
+            font-size: 2.5rem;
+            color: #00abf0;
+            margin-bottom: 15px;
+        }
+        .home-content h3 {
+            font-size: 1.8rem;
+            color: #00abf0;
+            margin-bottom: 10px;
+        }
+        .home-content p {
+            font-size: 1rem;
+            margin: 20px 0 40px;
+            color: #ededed;
+        }
+        .btn-box {
+            display: flex;
+            gap: 15px;
+        }
+        .btn-box a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 45px;
+            background: #00abf0;
+            border: 2px solid #00abf0;
+            font-size: 1rem;
+            color: #081b29;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.5s;
+        }
+        .btn-box a:hover {
+            color: #00abf0;
+            background: #081b29;
+        }
+        .home_sci {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .home_sci a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #00abf0;
+            border-radius: 50%;
+            color: #00abf0;
+            transition: 0.5s;
+        }
+        .home_sci a:hover {
+            color: #081b29;
+            background: #00abf0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">varun</a>
+        <nav class="navbar">
+            <a href="#" class="active">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="port.html">Contact</a>
+        </nav>
+    </header>
+    <section class="Home">
+        <div class="home-content">
+            <h1>Hi, I'm varun</h1>
+            <h3>data science engineering student</h3>
+            <p>I'm Varun, a passionate data science engineering student specializing in analyzing and interpreting complex data. I enjoy solving real-world problems with data and am continuously learning and improving my 
+                skills in machine learning, statistical analysis, and data visualization.</p>
+            <div class="btn-box">
+                <a href="#">Hire Me</a>
+                <a href="#">Let's Talk</a>
+            </div>
+            <div class="home_sci">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
