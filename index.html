@@ -1,323 +1,370 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Varun | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varun | Data Science Portfolio</title>
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #081b29;
-      color: #ededed;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
 
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 10%;
-      background: #081b29;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-    }
+<style>
 
-    .logo {
-      font-size: 25px;
-      font-weight: 600;
-      color: #ededed;
-      text-decoration: none;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    .navbar a {
-      margin-left: 25px;
-      font-size: 18px;
-      font-weight: 500;
-      color: #ededed;
-      text-decoration: none;
-      cursor: pointer;
-    }
+body{
+  background:#081b29;
+  color:#ededed;
+  font-family:Poppins, sans-serif;
+}
 
-    .navbar a.active,
-    .navbar a:hover {
-      color: #00abf0;
-    }
+/* HEADER */
 
-    .section {
-      display: none;
-      padding: 100px 10%;
-    }
+.header{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 10%;
+background:#081b29;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:100;
+}
 
-    .section.active {
-      display: block;
-    }
+.logo{
+font-size:26px;
+font-weight:600;
+color:#ededed;
+text-decoration:none;
+}
 
-    .home-content h1 {
-      font-size: 2.5rem;
-      color: #00abf0;
-      margin-bottom: 15px;
-    }
+.navbar a{
+margin-left:25px;
+font-size:18px;
+color:#ededed;
+cursor:pointer;
+transition:.3s;
+text-decoration:none;
+}
 
-    .home-content h3 {
-      font-size: 1.8rem;
-      color: #00abf0;
-      margin-bottom: 10px;
-    }
+.navbar a:hover,
+.navbar a.active{
+color:#00abf0;
+}
 
-    .home-content p {
-      margin: 20px 0;
-    }
+/* SECTIONS */
 
-    .btn-box {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-    }
+.section{
+display:none;
+padding:100px 10%;
+max-width:1100px;
+margin:auto;
+}
 
-    .btn-box a {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #00abf0;
-      color: #081b29;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 8px;
-      border: 2px solid #00abf0;
-      transition: 0.3s;
-    }
+.section.active{
+display:block;
+}
 
-    .btn-box a:hover {
-      background: transparent;
-      color: #00abf0;
-    }
+/* HOME */
 
-    .home_sci {
-      display: flex;
-      gap: 15px;
-      margin-top: 30px;
-    }
+.home-content h1{
+color:#00abf0;
+font-size:2.5rem;
+}
 
-    .home_sci a {
-      display: inline-flex;
-      width: 40px;
-      height: 40px;
-      border: 2px solid #00abf0;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      color: #00abf0;
-      transition: 0.3s;
-    }
+.home-content h3{
+color:#00abf0;
+margin-top:5px;
+}
 
-    .home_sci a:hover {
-      background: #00abf0;
-      color: #081b29;
-    }
+.home-content p{
+margin-top:15px;
+line-height:1.7;
+}
 
-    .profile-img {
-      margin-top: 30px;
-      width: 300px;
-      border-radius: 50%;
-      border: 4px solid #00abf0;
-    }
+.profile{
+display:flex;
+flex-wrap:wrap;
+gap:30px;
+align-items:center;
+}
 
-    .section h2 {
-      color: #00abf0;
-      margin-bottom: 15px;
-    }
+.profile-img{
+width:250px;
+border-radius:50%;
+border:4px solid #00abf0;
+}
 
-    .projects p,
-    .about p {
-      background: #112d4e;
-      padding: 20px;
-      border-radius: 8px;
-      line-height: 1.6;
-    }
+/* BUTTONS */
 
-    .github-link {
-      margin-top: 20px;
-      display: inline-block;
-      color: #00abf0;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.btn-box{
+margin-top:20px;
+}
 
-    .github-link i {
-      margin-right: 8px;
-    }
-  </style>
+.btn-box a{
+display:inline-block;
+padding:10px 20px;
+border-radius:8px;
+border:2px solid #00abf0;
+color:#081b29;
+background:#00abf0;
+font-weight:bold;
+text-decoration:none;
+margin-right:15px;
+transition:.3s;
+}
+
+.btn-box a:hover{
+background:transparent;
+color:#00abf0;
+}
+
+/* SOCIAL */
+
+.home_sci{
+margin-top:25px;
+}
+
+.home_sci a{
+display:inline-flex;
+width:40px;
+height:40px;
+border:2px solid #00abf0;
+color:#00abf0;
+border-radius:50%;
+justify-content:center;
+align-items:center;
+margin-right:10px;
+transition:.3s;
+}
+
+.home_sci a:hover{
+background:#00abf0;
+color:#081b29;
+}
+
+/* HEADINGS */
+
+h2{
+color:#00abf0;
+margin-bottom:15px;
+}
+
+/* BOX STYLE */
+
+.box{
+background:#112d4e;
+padding:20px;
+border-radius:8px;
+line-height:1.7;
+margin-bottom:15px;
+}
+
+/* CONTACT FORM */
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
+border:none;
+font-family:Poppins;
+}
+
+button{
+margin-top:15px;
+padding:10px 25px;
+background:#00abf0;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#008dd1;
+}
+
+</style>
 </head>
+
 <body>
-  <header class="header">
-    <a href="#" class="logo">Varun</a>
-    <nav class="navbar">
-      <a class="nav-link active" onclick="showSection('home')">Home</a>
-      <a class="nav-link" onclick="showSection('about')">About</a>
-      <a class="nav-link" onclick="showSection('projects')">Projects</a>
-      <a class="nav-link" onclick="showSection('contact')">Contact</a>
 
-    </nav>
-  </header>
+<header class="header">
+<a class="logo">Varun</a>
 
-  <div id="home" class="section active">
-    <div class="home-content">
-      <h1>Hi, I'm Varun</h1>
-      <h3>Data Science Student</h3>
-      <p>I'm Varun, a passionate student of B.Tech in Data Science. I love solving real-world problems through data. Currently learning Python, Machine Learning, and data visualization tools. I'm also into fitness, tech trends, and self-improvement..</p>
-      <div class="btn-box">
-        <a href="#">Hire Me</a>
-        <a href="VarunB_DataScience_CV.pdf">Download CV</a>
-      </div>
-      <div class="home_sci">
-        <a href="#"><i class='bx bxl-facebook'></i></a>
-        <a href="#"><i class='bx bxl-twitter'></i></a>
-        <a href="https://www.linkedin.com/in/varun-b-647b1730a"><i class='bx bxl-linkedin'></i></a>
-        <a href="https://github.com/varun539" target="_blank"><i class='bx bxl-github'></i></a>
-      </div>
-      <img src="profile.jpeg" alt="Profile Picture" class="profile-img">
-    </div>
-  </div>
+<nav class="navbar">
+  <a class="nav-link active" onclick="showSection('home')">Home</a>
+  <a class="nav-link" onclick="showSection('about')">About</a>
+  <a class="nav-link" onclick="showSection('skills')">Skills</a>
+  <a class="nav-link" onclick="showSection('projects')">Projects</a>
+  <a class="nav-link" onclick="showSection('contact')">Contact</a>
+</nav>
+</header>
 
-  <div id="about" class="section about">
-    <h2>About Me</h2>
-    <p>
-     I'm Varun, a B.Tech Data Science student with a deep passion for solving real-world problems through data. My current focus is on mastering Python, Machine Learning, SQL, and Data Visualization.
 
-I thrive on challenges that involve data-driven decision-making and predictive analytics. I'm already building real-world projects—like IPL Match Analysis and Walmart Sales Forecasting—and constantly expanding my skill set through hands-on learning.
+<!-- HOME -->
+<div id="home" class="section active">
 
-Outside of tech, I’m into fitness, longevity, and personal growth. I believe in building not just a career, but a life that’s optimized for performance.
+<div class="profile">
 
-💼 My goal? To land a ₹20+ LPA job in a top-tier company, build innovative AI products, and eventually create something that truly changes the game.
-      
-      </ul>
-    </p>
-  </div>
+<div class="home-content">
+<h1>Hi, I'm Varun 👋</h1>
+<h3>Data Science Student</h3>
 
- <div id="projects" class="section projects">
-  <h2>My Projects</h2>
-
-  <style>
-    .badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 500;
-      margin: 2px 4px;
-      color: white;
-    }
-    .python { background-color: #3572A5; }
-    .pandas { background-color: #130754; }
-    .matplotlib { background-color: #11557C; }
-    .seaborn { background-color: #268BD2; }
-    .sklearn { background-color: #F7931E; }
-    .streamlit { background-color: #FF4B4B; }
-    .plotly { background-color: #3F4C6B; }
-    .randomforest { background-color: #0B3D91; }
-    .html-link { color: #0077cc; text-decoration: none; }
-  </style>
-
-  <h3>🏏 IPL Match Analysis</h3>
-  <p>
-    <span class="badge python">Python</span>
-    <span class="badge pandas">Pandas</span>
-    <span class="badge matplotlib">Matplotlib</span>
-    <span class="badge seaborn">Seaborn</span>
-    <ul>
-      <li>Explored match outcomes, top-performing teams, toss effects</li>
-      <li>Analyzed player stats and trends</li>
-      <li>Visualized results using graphs and heatmaps</li>
-    </ul>
-    🔗 <a href="https://github.com/varun539/data-analysis-2008-2024" class="html-link" target="_blank">
-      <i class='bx bxl-github'></i> View Project on GitHub
-    </a>
-  </p>
-
-  <h3>🛒 Walmart Sales Prediction</h3>
-  <p>
-    <span class="badge python">Python</span>
-    <span class="badge pandas">Pandas</span>
-    <span class="badge sklearn">Scikit-learn</span>
-    <span class="badge randomforest">Random Forest</span>
-    <span class="badge streamlit">Streamlit</span>
-    <ul>
-      <li>Merged multiple datasets and engineered key features</li>
-      <li>Used Random Forest to forecast weekly sales</li>
-      <li>Deployed the app using Streamlit</li>
-    </ul>
-    🔗 <a href="https://github.com/varun539/Walmart-sales-prediction/blob/main/Walmart_sales_prediction%20(1).ipynb" class="html-link" target="_blank">
-      <i class='bx bxl-github'></i> GitHub</a> |
-    🔗 <a href="https://walmart-sales-prediction-varun.streamlit.app/" class="html-link" target="_blank">
-      <i class='bx bx-link-external'></i> Live Demo</a>
-  </p>
-
-  <h3>📊 Indian Startup Funding Analysis</h3>
-  <p>
-    <span class="badge python">Python</span>
-    <span class="badge pandas">Pandas</span>
-    <span class="badge plotly">Plotly</span>
-    <span class="badge streamlit">Streamlit</span>
-    <ul>
-      <li>Cleaned and standardized funding data</li>
-      <li>Analyzed trends across investors, cities, and sectors</li>
-      <li>Built interactive visualizations</li>
-    </ul>
-    🔗 <a href="https://github.com/varun539/indain_startup_funding_analysis/blob/main/startup_funding_analysis.ipynb" class="html-link" target="_blank">
-      <i class='bx bxl-github'></i> GitHub</a>
-  </p>
-
-  <h3>🎬 Movie Recommendation System</h3>
 <p>
-  <span class="badge python">Python</span>
-  <span class="badge pandas">Pandas</span>
-  <span class="badge sklearn">Scikit-learn</span>
-  <span class="badge streamlit">Streamlit</span>
-  <ul>
-    <li>Extracted movie features and calculated similarity scores</li>
-    <li>Recommended movies based on content similarity</li>
-    <li>Built an interactive UI using Streamlit</li>
-  </ul>
-  🔗 <a href="https://github.com/varun539/-movie-recommendation/blob/main/movie_app.py" class="html-link" target="_blank">
-    <i class='bx bxl-github'></i> GitHub</a> |
-  🔗 <a href="https://movie-recommedation-varun.streamlit.app/" class="html-link" target="_blank">
-    <i class='bx bx-link-external'></i> Live Demo</a>
+I'm a B.Tech Data Science student passionate about solving real-world problems using Python & Machine Learning.
+I build end-to-end ML projects and deploy interactive apps using Streamlit.
 </p>
 
-  </p>
+<div class="btn-box">
+<a onclick="showSection('contact')">Hire Me</a>
+<a href="VarunB_DataScience_CV.pdf" download>Download CV</a>
 </div>
-<div id="contact" class="section contact">
-  <h2>Contact Me</h2>
-  <p>You can reach out to me via the following channels:</p>
-  <ul>
-    <li>📧 Email: vb9225177@gmail.com</li>
-    <li>📱 Phone(whatsapp): +91-6235067320</li>
-    <li>🌐 LinkedIn: <a href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank">LinkedIn Profile</a></li>
-    <li>🐙 GitHub: <a href="https://github.com/varun539" target="_blank">GitHub Profile</a></li>
-  </ul>
+
+<div class="home_sci">
+<a href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank"><i class='bx bxl-linkedin'></i></a>
+<a href="https://github.com/varun539" target="_blank"><i class='bx bxl-github'></i></a>
+</div>
+</div>
+
+<img src="profile.jpeg" class="profile-img">
+
+</div>
 </div>
 
 
-  <script>
-    function showSection(id) {
-      // Hide all sections
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-      // Remove active from all nav links
-      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-      // Show selected section and make nav active
-      document.getElementById(id).classList.add('active');
-      event.target.classList.add('active');
-    }
-  </script>
+<!-- ABOUT -->
+<div id="about" class="section">
+<h2>About Me</h2>
+
+<div class="box">
+I'm a highly motivated Data Science student focused on building strong ML foundations.
+Actively developing skills in Python, SQL, ML modeling and deployment through project-based learning.
+Goal: secure a remote Data Science role and build impactful AI solutions.
+</div>
+</div>
+
+
+<!-- SKILLS -->
+<div id="skills" class="section">
+
+<h2>Skills</h2>
+
+<div class="box">
+<b>Languages:</b> Python, SQL <br>
+<b>Libraries:</b> Pandas, NumPy, Matplotlib, Seaborn, Plotly <br>
+<b>Machine Learning:</b> Scikit-Learn, Regression, Classification, Random Forest <br>
+<b>Visualization:</b> Power BI, Streamlit <br>
+<b>Tools:</b> Jupyter Notebook, VS Code, GitHub
+</div>
+
+</div>
+
+
+<!-- PROJECTS -->
+<div id="projects" class="section">
+
+<h2>Projects</h2>
+
+<div class="box">
+<h3>🛒 Walmart Weekly Sales Forecast</h3>
+<p>
+✔ Merged multiple datasets and engineered key features<br>
+✔ Trained Random Forest model to forecast weekly sales<br>
+✔ Deployed interactive Streamlit application  
+
+<br><br>
+<b>Impact:</b> Built a production-ready ML solution delivering real-time business forecasting.
+</p>
+</div>
+
+
+<div class="box">
+<h3>🔄 Customer Churn Prediction</h3>
+<p>
+✔ Data cleaning & feature engineering on customer dataset<br>
+✔ ML classification model to predict churn risk<br>
+
+<br>
+<b>Impact:</b> Enabled proactive retention strategies for high-risk customers.
+</p>
+</div>
+
+
+<div class="box">
+<h3>❤️ AI Health Tracker</h3>
+<p>
+✔ Lifestyle & health data analysis<br>
+✔ ML insights generation
+
+<br>
+<b>Impact:</b> Converted raw health data into actionable wellness insights.
+</p>
+</div>
+
+
+<div class="box">
+<h3>📊 Indian Startup Funding EDA</h3>
+<p>
+✔ Cleaned 10+ years of funding data<br>
+✔ Trend analysis across cities, sectors and investors<br>
+✔ Built interactive visual dashboards
+
+<br>
+<b>Impact:</b> Revealed startup investment growth sectors & investor behavior trends.
+</p>
+</div>
+
+</div>
+
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+
+<h2>Contact Me</h2>
+
+<div class="box">
+
+<form action="mailto:vb9225177@gmail.com" method="post" enctype="text/plain">
+
+<input type="text" name="Name" placeholder="Your Name" required>
+
+<input type="email" name="Email" placeholder="Your Email" required>
+
+<textarea name="Message" rows="4" placeholder="Your Message"></textarea>
+
+<button type="submit">Send Message 🚀</button>
+
+</form>
+
+<br>
+
+📧 Email: vb9225177@gmail.com <br>
+🔗 LinkedIn: <a href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank">Profile</a> <br>
+🐙 GitHub: <a href="https://github.com/varun539" target="_blank">Github</a>
+
+</div>
+</div>
+
+
+<!-- SCRIPT -->
+<script>
+
+function showSection(id){
+document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+
+document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+event.target.classList.add('active');
+}
+
+</script>
+
 </body>
 </html>
