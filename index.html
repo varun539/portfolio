@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Varun B — Data Science Portfolio</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Varun B — Data Science & ML Engineer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
 
 <style>
@@ -31,18 +31,18 @@ body{
 font-family:'Poppins',sans-serif;
 background:var(--bg);
 color:var(--text);
-line-height:1.5;
+line-height:1.6;
 }
 
 .header{
 position:fixed;
 top:0;
 width:100%;
-padding:18px 8%;
+padding:16px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-backdrop-filter:blur(6px);
+backdrop-filter:blur(8px);
 z-index:100;
 }
 
@@ -65,7 +65,7 @@ color:var(--accent);
 
 .toggle{
 background:transparent;
-border:1px solid rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.15);
 padding:8px;
 border-radius:8px;
 cursor:pointer;
@@ -75,16 +75,11 @@ color:var(--accent);
 main{
 max-width:1100px;
 margin:auto;
-padding:110px 5% 40px;
+padding:110px 5% 50px;
 }
 
-.section{
-display:none;
-}
-
-.section.active{
-display:block;
-}
+.section{display:none}
+.section.active{display:block}
 
 .hero{
 display:flex;
@@ -93,10 +88,7 @@ gap:40px;
 flex-wrap:wrap;
 }
 
-.hero-left{
-flex:1;
-min-width:250px;
-}
+.hero-left{flex:1;min-width:260px}
 
 .hero-right img{
 width:260px;
@@ -112,8 +104,7 @@ border-radius:10px;
 text-decoration:none;
 font-weight:700;
 display:inline-block;
-margin-right:10px;
-margin-top:10px;
+margin:10px 10px 0 0;
 }
 
 .btn.ghost{
@@ -126,7 +117,7 @@ color:var(--accent);
 background:rgba(255,255,255,.08);
 padding:6px 10px;
 border-radius:999px;
-margin:4px;
+margin:5px;
 display:inline-block;
 font-size:13px;
 }
@@ -134,33 +125,31 @@ font-size:13px;
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
-margin-top:20px;
+gap:22px;
+margin-top:25px;
 }
 
 .card{
 background:var(--card);
-padding:14px;
-border-radius:12px;
+padding:16px;
+border-radius:14px;
 transition:.25s;
 }
 
-.card:hover{
-transform:translateY(-6px);
-}
+.card:hover{transform:translateY(-6px)}
 
 .card img{
 width:100%;
-height:150px;
+height:160px;
 object-fit:cover;
-border-radius:10px;
+border-radius:12px;
 }
 
 .small-link{
 display:inline-block;
-margin:8px 6px 0 0;
+margin:10px 6px 0 0;
 border:1px solid var(--accent);
-padding:6px 10px;
+padding:6px 12px;
 border-radius:8px;
 color:var(--accent);
 text-decoration:none;
@@ -168,13 +157,10 @@ font-weight:600;
 font-size:14px;
 }
 
-.contact-links a{
-display:block;
-margin:8px 0;
-}
-
+.contact-links a{display:block;margin:10px 0}
 </style>
 </head>
+
 <body>
 
 <header class="header">
@@ -200,16 +186,16 @@ margin:8px 0;
 <div class="hero-left">
 <h1>Hi, I'm Varun 👋</h1>
 <h3 style="color:var(--accent)">Data Science Student • ML Engineer</h3>
+
 <p>
-I build end-to-end ML projects — problem understanding, EDA, modeling,
-evaluation & <strong>real deployment using Streamlit</strong>.
-Actively seeking remote internships & entry-level roles.
+I build <strong>end-to-end machine learning systems</strong> — from raw data
+to deployed products. Experienced in AutoML pipelines, feature engineering,
+model evaluation, explainability, and real-world deployment using Streamlit.
 </p>
 
 <a class="btn" onclick="show('contact',event)">Hire Me</a>
 <a class="btn ghost" href="VarunB_DataScience_CV.pdf" target="_blank">Resume</a>
 <a class="btn" href="https://github.com/varun539" target="_blank">GitHub</a>
-
 </div>
 
 <div class="hero-right">
@@ -222,12 +208,11 @@ Actively seeking remote internships & entry-level roles.
 <!-- ABOUT -->
 <section id="about" class="section">
 <h2 style="color:var(--accent)">About Me</h2>
-
 <p>
-B.Tech Data Science student with strong hands-on experience building ML pipelines,
-performing feature engineering, training regression/classification models
-and deploying AI apps using Streamlit.
-Comfortable with LLM integrations for automation and coaching tools.
+B.Tech Data Science student focused on building production-grade ML applications.
+Comfortable with regression, classification, AutoML systems, model explainability,
+and AI-assisted development workflows. Actively seeking remote internships and
+entry-level data roles.
 </p>
 </section>
 
@@ -236,25 +221,13 @@ Comfortable with LLM integrations for automation and coaching tools.
 <h2 style="color:var(--accent)">Skills</h2>
 
 <div class="tags">
-<span>Python</span>
-<span>Pandas</span>
-<span>NumPy</span>
-<span>SQL</span>
-<span>EDA</span>
-<span>Feature Engineering</span>
-<span>Scikit-learn</span>
-<span>XGBoost</span>
-<span>LightGBM</span>
-<span>Model Evaluation</span>
-<span>Classification & Regression</span>
-<span>Time Series</span>
-<span>Data Visualization</span>
-<span>Matplotlib</span>
-<span>Seaborn</span>
-<span>Plotly</span>
-<span>Prompt Engineering</span>
-<span>Gemini API</span>
-<span>Streamlit Deployment</span>
+<span>Python</span><span>SQL</span><span>Pandas</span><span>NumPy</span>
+<span>Scikit-learn</span><span>XGBoost</span><span>LightGBM</span><span>CatBoost</span>
+<span>Feature Engineering</span><span>AutoML Systems</span>
+<span>Model Evaluation</span><span>SHAP Explainability</span>
+<span>Streamlit Deployment</span><span>Model Versioning</span>
+<span>Batch Prediction Pipelines</span>
+<span>Prompt Engineering</span><span>AI-Assisted Development</span>
 <span>Git & GitHub</span>
 </div>
 </section>
@@ -265,43 +238,40 @@ Comfortable with LLM integrations for automation and coaching tools.
 
 <div class="grid">
 
+<!-- DATAPILOT AI -->
+<div class="card">
+<img src="datapilot.png">
+<h3>🤖 DataPilot AI — AutoML Platform</h3>
+<p>
+Production-grade AutoML platform enabling users to train, evaluate,
+explain, tune, version, and deploy ML models directly from CSV data.
+</p>
+<a class="small-link" href="https://github.com/varun539/datapilot-ai" target="_blank">GitHub</a>
+<a class="small-link" href="https://varun-datapilot-ai.streamlit.app/" target="_blank">Live Demo</a>
+</div>
+
+<!-- WALMART -->
 <div class="card">
 <img src="walmart.png">
 <h3>🛒 Walmart Sales Forecast</h3>
 <p>
-Random Forest forecasting model with feature engineering & visual dashboard.
+Random Forest regression model with feature engineering and deployed
+Streamlit dashboard for weekly sales forecasting.
 </p>
-<a class="small-link" href=" https://github.com/varun539/Walmart-sales-prediction" target="_blank">GitHub</a>
-<a class="small-link" href=" https://walmart-sales-prediction-varun.streamlit.app/ " target="_blank">Live Demo</a>
+<a class="small-link" href="https://github.com/varun539/Walmart-sales-prediction" target="_blank">GitHub</a>
+<a class="small-link" href="https://walmart-sales-prediction-varun.streamlit.app/" target="_blank">Live Demo</a>
 </div>
 
+<!-- CHURN -->
 <div class="card">
 <img src="churn.png">
-<h3>📉 Telecom Churn Prediction</h3>
+<h3>📉 Customer Churn Prediction</h3>
 <p>
-SMOTE handling + Logistic Regression classifier for churn risk scoring.
+Classification system using Logistic Regression, Random Forest, and
+imbalance handling to predict churn probability.
 </p>
 <a class="small-link" href="https://github.com/varun539/customer-churn-app" target="_blank">GitHub</a>
 <a class="small-link" href="https://customer-churn-app-by-varun.streamlit.app/" target="_blank">Live Demo</a>
-</div>
-
-<div class="card">
-<img src="health.png">
-<h3>❤️ AI Health Recovery Tracker</h3>
-<p>
-LightGBM recovery model with Gemini-powered AI coach & JSON insights.
-</p>
-<a class="small-link" href="https://github.com/varun539/health-ai-tracker-gemini" target="_blank">GitHub</a>
-<a class="small-link" href="https://health-ai-tracker-varun.streamlit.app/" target="_blank">Live Demo</a>
-</div>
-
-<div class="card">
-<img src="startup.png">
-<h3>📊 Startup Funding Analysis</h3>
-<p>
-EDA study on $50B+ startup investments showing city & sector insights.
-</p>
-<a class="small-link" href="https://github.com/varun539/indain_startup_funding_analysis" target="_blank">GitHub</a>
 </div>
 
 </div>
@@ -312,20 +282,14 @@ EDA study on $50B+ startup investments showing city & sector insights.
 <h2 style="color:var(--accent)">Contact</h2>
 
 <div class="contact-links">
-
 <a class="btn" href="mailto:vb9225177@gmail.com">📧 Email</a>
-
 <a class="btn ghost" href="https://wa.me/916235067320" target="_blank">💬 WhatsApp</a>
+<a class="btn ghost" href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank">🔗 LinkedIn</a>
 
-<a class="btn ghost" href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank">
-🔗 LinkedIn
-</a>
-
-<p style="margin-top:10px">
+<p style="margin-top:12px">
 <strong>Email:</strong> vb9225177@gmail.com<br>
 <strong>GitHub:</strong> github.com/varun539
 </p>
-
 </div>
 </section>
 
@@ -349,12 +313,11 @@ toggle.innerHTML = t==="light" ? "<i class='bx bx-sun'></i>" : "<i class='bx bx-
 
 const saved=localStorage.getItem("theme")||
 (window.matchMedia('(prefers-color-scheme:light)').matches?"light":"dark");
-
 setTheme(saved);
 
-toggle.onclick=()=>{
-setTheme(document.documentElement.getAttribute("data-theme")==="light"?"dark":"light");
-}
+toggle.onclick=()=>setTheme(
+document.documentElement.getAttribute("data-theme")==="light"?"dark":"light"
+);
 </script>
 
 </body>
