@@ -16,7 +16,6 @@
 --accent:#00abf0;
 --text:#ededed;
 }
-
 [data-theme="light"]{
 --bg:#f5f8fb;
 --card:#ffffff;
@@ -24,106 +23,62 @@
 --accent:#0077b6;
 --text:#071428;
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
-
 body{
 font-family:'Poppins',sans-serif;
 background:var(--bg);
 color:var(--text);
 line-height:1.7;
 }
-
 .header{
-position:fixed;
-top:0;
-width:100%;
+position:fixed;top:0;width:100%;
 padding:16px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-backdrop-filter:blur(8px);
-z-index:100;
+display:flex;justify-content:space-between;align-items:center;
+backdrop-filter:blur(8px);z-index:100;
 }
-
 .logo{font-size:20px;font-weight:700}
-
 .nav a{
-margin:0 10px;
-cursor:pointer;
-color:var(--muted);
-text-decoration:none;
-font-weight:500;
+margin:0 10px;cursor:pointer;
+color:var(--muted);text-decoration:none;font-weight:500;
 }
-
 .nav a.active,.nav a:hover{color:var(--accent)}
-
 .toggle{
-background:transparent;
-border:1px solid rgba(255,255,255,.15);
-padding:8px;
-border-radius:8px;
-cursor:pointer;
-color:var(--accent);
+background:transparent;border:1px solid rgba(255,255,255,.15);
+padding:8px;border-radius:8px;cursor:pointer;color:var(--accent);
 }
-
 main{
-max-width:1100px;
-margin:auto;
+max-width:1100px;margin:auto;
 padding:110px 5% 60px;
 }
-
 .section{display:none}
 .section.active{display:block}
-
 .hero{
-display:flex;
-align-items:center;
-gap:40px;
-flex-wrap:wrap;
+display:flex;align-items:center;gap:40px;flex-wrap:wrap;
 }
-
 .hero-left{flex:1;min-width:260px}
-
 .hero-right img{
-width:260px;
-border-radius:20px;
-border:4px solid var(--accent);
+width:260px;border-radius:20px;border:4px solid var(--accent);
 }
-
 .btn{
-background:var(--accent);
-color:var(--bg);
-padding:12px 20px;
-border-radius:12px;
-text-decoration:none;
-font-weight:700;
-display:inline-block;
-margin:12px 12px 0 0;
+background:var(--accent);color:var(--bg);
+padding:12px 20px;border-radius:12px;
+text-decoration:none;font-weight:700;
+display:inline-block;margin:12px 12px 0 0;
 }
-
 .btn.ghost{
-background:transparent;
-border:2px solid var(--accent);
+background:transparent;border:2px solid var(--accent);
 color:var(--accent);
 }
-
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
-margin-top:25px;
+gap:22px;margin-top:25px;
 }
-
 .card{
-background:var(--card);
-padding:18px;
-border-radius:16px;
+background:var(--card);padding:18px;border-radius:16px;
 transition:.25s;
 }
-
 .card:hover{transform:translateY(-6px)}
-
 .contact-links a{display:block;margin:12px 0}
 </style>
 </head>
@@ -157,8 +112,8 @@ transition:.25s;
 <p>
 I build <strong>production-ready data science and machine learning systems</strong> —
 from exploratory data analysis to model deployment.
-My work focuses on analytics, predictive modeling, AutoML systems,
-explainable AI, and ML applications with real business value.
+Focused on analytics, predictive modeling, AutoML systems,
+and explainable ML for real business problems.
 </p>
 
 <a class="btn" onclick="show('contact',event)">Let’s Work Together</a>
@@ -241,15 +196,15 @@ explainable AI, and ML applications with real business value.
 <h3>Exploratory Data Analysis</h3>
 <p>
 Analyze distributions, trends, correlations, missing values,
-outliers, and potential data leakage before modeling.
+outliers, and leakage risks before modeling.
 </p>
 </div>
 
 <div class="card">
 <h3>Business-Focused Insights</h3>
 <p>
-Convert raw data into actionable insights using aggregation,
-segmentation, and comparative analysis.
+Translate raw data into actionable insights using aggregation,
+segmentation, and comparison analysis.
 </p>
 </div>
 
@@ -264,7 +219,7 @@ to technical and non-technical stakeholders.
 <div class="card">
 <h3>Data Quality & Validation</h3>
 <p>
-Validate assumptions, check inconsistencies, and ensure
+Validate assumptions, detect inconsistencies, and ensure
 data reliability for downstream ML tasks.
 </p>
 </div>
@@ -298,7 +253,7 @@ data reliability for downstream ML tasks.
 
 <div class="card">
 <h3>📉 Customer Churn Prediction</h3>
-<p><strong>Problem:</strong> Identify customers at risk of churn</p>
+<p><strong>Problem:</strong> Identify customers at risk</p>
 <p><strong>Solution:</strong> Classification with imbalance handling</p>
 <p><strong>Impact:</strong> Early churn identification</p>
 <a class="btn ghost" href="https://github.com/varun539/customer-churn-app" target="_blank">GitHub</a>
@@ -314,9 +269,9 @@ data reliability for downstream ML tasks.
 <ul>
 <li>Start with business understanding</li>
 <li>Use EDA to reduce modeling risk</li>
-<li>Prefer simple, explainable models</li>
+<li>Prefer simple, explainable solutions</li>
 <li>Validate assumptions with data</li>
-<li>Build solutions ready for deployment</li>
+<li>Build systems ready for deployment</li>
 </ul>
 </section>
 
@@ -338,7 +293,6 @@ document.getElementById(id).classList.add('active');
 document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));
 if(ev) ev.target.classList.add('active');
 }
-
 const toggle=document.getElementById('themeToggle');
 function setTheme(t){
 document.documentElement.setAttribute('data-theme',t);
