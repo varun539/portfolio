@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Varun B — Data Science & ML Engineer</title>
+<title>Varun B — ML & Generative AI Engineer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
@@ -31,7 +31,7 @@ body{
 font-family:'Poppins',sans-serif;
 background:var(--bg);
 color:var(--text);
-line-height:1.6;
+line-height:1.7;
 }
 
 .header{
@@ -70,7 +70,7 @@ color:var(--accent);
 main{
 max-width:1100px;
 margin:auto;
-padding:110px 5% 50px;
+padding:110px 5% 60px;
 }
 
 .section{display:none}
@@ -94,27 +94,18 @@ border:4px solid var(--accent);
 .btn{
 background:var(--accent);
 color:var(--bg);
-padding:10px 18px;
-border-radius:10px;
+padding:12px 20px;
+border-radius:12px;
 text-decoration:none;
 font-weight:700;
 display:inline-block;
-margin:10px 10px 0 0;
+margin:12px 12px 0 0;
 }
 
 .btn.ghost{
 background:transparent;
 border:2px solid var(--accent);
 color:var(--accent);
-}
-
-.tags span{
-background:rgba(255,255,255,.08);
-padding:6px 10px;
-border-radius:999px;
-margin:5px;
-display:inline-block;
-font-size:13px;
 }
 
 .grid{
@@ -126,33 +117,41 @@ margin-top:25px;
 
 .card{
 background:var(--card);
-padding:16px;
-border-radius:14px;
+padding:18px;
+border-radius:16px;
 transition:.25s;
 }
 
 .card:hover{transform:translateY(-6px)}
 
-.card img{
-width:100%;
-height:160px;
-object-fit:cover;
-border-radius:12px;
-}
-
-.small-link{
-display:inline-block;
-margin:10px 6px 0 0;
-border:1px solid var(--accent);
+.tags span{
+background:rgba(255,255,255,.08);
 padding:6px 12px;
-border-radius:8px;
-color:var(--accent);
-text-decoration:none;
-font-weight:600;
-font-size:14px;
+border-radius:999px;
+margin:6px;
+display:inline-block;
+font-size:13px;
 }
 
-.contact-links a{display:block;margin:10px 0}
+input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:none;
+outline:none;
+margin-top:14px;
+font-family:'Poppins';
+}
+
+.ai-box{
+margin-top:14px;
+padding:16px;
+border-radius:14px;
+background:var(--card);
+min-height:60px;
+}
+
+.contact-links a{display:block;margin:12px 0}
 </style>
 </head>
 
@@ -165,7 +164,9 @@ font-size:14px;
 <a onclick="show('home',event)" class="active">Home</a>
 <a onclick="show('about',event)">About</a>
 <a onclick="show('skills',event)">Skills</a>
+<a onclick="show('ai',event)">AI</a>
 <a onclick="show('projects',event)">Projects</a>
+<a onclick="show('thinking',event)">Thinking</a>
 <a onclick="show('contact',event)">Contact</a>
 </div>
 
@@ -177,26 +178,24 @@ font-size:14px;
 <!-- HOME -->
 <section id="home" class="section active">
 <div class="hero">
-
 <div class="hero-left">
 <h1>Hi, I'm Varun 👋</h1>
-<h3 style="color:var(--accent)">Data Science Student • ML Engineer</h3>
+<h3 style="color:var(--accent)">ML Engineer • Data Scientist • Generative AI Builder</h3>
 
 <p>
-I build <strong>end-to-end machine learning systems</strong> — from raw data
-to deployed products. Experienced in AutoML pipelines, feature engineering,
-model evaluation, explainability, and Streamlit deployment.
+I build <strong>production-grade Machine Learning and Generative AI systems</strong> —
+from raw data to deployed applications. My work focuses on AutoML platforms,
+predictive modeling, explainable AI, and LLM-powered workflows.
 </p>
 
-<a class="btn" onclick="show('contact',event)">Hire Me</a>
+<a class="btn" onclick="show('contact',event)">Let’s Work Together</a>
 <a class="btn ghost" href="VarunB_DataScience_CV.pdf" target="_blank">Resume</a>
 <a class="btn" href="https://github.com/varun539" target="_blank">GitHub</a>
 </div>
 
 <div class="hero-right">
-<img src="profile.jpeg" alt="Varun profile photo">
+<img src="profile.jpeg" alt="Varun profile">
 </div>
-
 </div>
 </section>
 
@@ -204,31 +203,68 @@ model evaluation, explainability, and Streamlit deployment.
 <section id="about" class="section">
 <h2 style="color:var(--accent)">About Me</h2>
 <p>
-B.Tech Data Science student focused on building production-grade ML systems.
-Strong in regression, classification, AutoML, model explainability,
-and AI-assisted development workflows. Seeking remote ML/Data roles.
+I am a Data Scientist and ML Engineer focused on building
+<strong>real-world, scalable ML and Generative AI systems</strong>.
+My experience spans regression, classification, AutoML system design,
+model explainability using SHAP, and LLM-assisted analytical workflows.
+I enjoy transforming complex problems into simple, deployable solutions.
 </p>
 </section>
 
 <!-- SKILLS -->
 <section id="skills" class="section">
-<h2 style="color:var(--accent)">Skills</h2>
+<h2 style="color:var(--accent)">Technical Expertise</h2>
 
-<div class="tags">
-<span>Python</span><span>SQL</span>
-<span>Pandas</span><span>NumPy</span><span>Scikit-learn</span>
-<span>XGBoost</span><span>LightGBM</span><span>CatBoost</span>
-<span>Feature Engineering</span><span>AutoML Systems</span>
-<span>Model Evaluation</span><span>Cross-Validation</span>
-<span>Class Imbalance Handling</span>
-<span>SHAP Explainability</span>
-<span>Streamlit Deployment</span>
-<span>Batch Prediction Pipelines</span>
-<span>Model Versioning</span>
-<span>Prompt Engineering</span>
-<span>LLM-Assisted Development</span>
-<span>Git & GitHub</span>
+<div class="grid">
+<div class="card">
+<h3>Machine Learning</h3>
+<ul>
+<li>Regression & Classification</li>
+<li>Feature Engineering</li>
+<li>Model Evaluation & CV</li>
+<li>Imbalance Handling</li>
+</ul>
 </div>
+
+<div class="card">
+<h3>Generative AI & LLMs</h3>
+<ul>
+<li>Prompt Engineering</li>
+<li>LLM-assisted analysis</li>
+<li>AI Q&A & assistant workflows</li>
+<li>Text summarization & reasoning</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>AutoML & Explainability</h3>
+<ul>
+<li>End-to-end AutoML pipelines</li>
+<li>Model comparison</li>
+<li>SHAP explainability</li>
+<li>Feature importance</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Deployment & Engineering</h3>
+<ul>
+<li>Streamlit ML apps</li>
+<li>Batch prediction systems</li>
+<li>Model versioning</li>
+<li>Git & GitHub</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- AI ASSISTANT -->
+<section id="ai" class="section">
+<h2 style="color:var(--accent)">🤖 Portfolio AI Assistant</h2>
+<p>Ask about my projects, skills, or how I build ML & AI systems.</p>
+
+<input id="aiInput" placeholder="Ask me about AutoML, projects, or Generative AI..." />
+<div id="aiOutput" class="ai-box"></div>
 </section>
 
 <!-- PROJECTS -->
@@ -236,51 +272,49 @@ and AI-assisted development workflows. Seeking remote ML/Data roles.
 <h2 style="color:var(--accent)">Projects</h2>
 
 <div class="grid">
-
 <div class="card">
-<img src="datapilot.png" alt="DataPilot AI">
 <h3>🤖 DataPilot AI — AutoML Platform</h3>
-<p>
-Production-ready AutoML platform to train, evaluate, explain,
-version, and deploy ML models from CSV datasets.
-</p>
-<a class="small-link" href="https://github.com/varun539/datapilot-ai" target="_blank">GitHub</a>
-<a class="small-link" href="https://varun-datapilot-ai.streamlit.app/" target="_blank">Live Demo</a>
+<p><strong>Problem:</strong> Manual ML experimentation</p>
+<p><strong>Solution:</strong> End-to-end AutoML system</p>
+<p><strong>Impact:</strong> Faster model building & explainability</p>
+<a class="btn ghost" href="https://varun-datapilot-ai.streamlit.app/" target="_blank">Live</a>
 </div>
 
 <div class="card">
-<img src="walmart.png" alt="Walmart sales forecasting">
-<h3>🛒 Walmart Sales Forecast</h3>
-<p>
-Random Forest regression with feature engineering and
-Streamlit deployment for sales forecasting.
-</p>
-<a class="small-link" href="https://github.com/varun539/Walmart-sales-prediction" target="_blank">GitHub</a>
-<a class="small-link" href="https://walmart-sales-prediction-varun.streamlit.app/" target="_blank">Live Demo</a>
+<h3>🛒 Walmart Sales Forecasting</h3>
+<p><strong>Problem:</strong> Sales prediction</p>
+<p><strong>Solution:</strong> Regression + feature engineering</p>
+<p><strong>Impact:</strong> Improved forecast reliability</p>
 </div>
 
 <div class="card">
-<img src="churn.png" alt="Customer churn prediction">
 <h3>📉 Customer Churn Prediction</h3>
-<p>
-Classification system using multiple models with imbalance
-handling to predict churn probability.
-</p>
-<a class="small-link" href="https://github.com/varun539/customer-churn-app" target="_blank">GitHub</a>
-<a class="small-link" href="https://customer-churn-app-by-varun.streamlit.app/" target="_blank">Live Demo</a>
+<p><strong>Problem:</strong> Predict customer churn</p>
+<p><strong>Solution:</strong> Classification with imbalance handling</p>
+<p><strong>Impact:</strong> Early churn detection</p>
 </div>
+</div>
+</section>
 
-</div>
+<!-- THINKING -->
+<section id="thinking" class="section">
+<h2 style="color:var(--accent)">🧠 How I Think</h2>
+<ul>
+<li>Understand the business objective</li>
+<li>Analyze data quality & assumptions</li>
+<li>Engineer meaningful features</li>
+<li>Compare models using the right metrics</li>
+<li>Explain predictions clearly</li>
+<li>Deploy and iterate</li>
+</ul>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="section">
-<h2 style="color:var(--accent)">Contact</h2>
-
+<h2 style="color:var(--accent)">Let’s Build Something Useful</h2>
 <div class="contact-links">
 <a class="btn" href="mailto:vb9225177@gmail.com">📧 Email</a>
-<a class="btn ghost" href="https://wa.me/916235067320" target="_blank">💬 WhatsApp</a>
-<a class="btn ghost" href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank">🔗 LinkedIn</a>
+<a class="btn ghost" href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank">LinkedIn</a>
 </div>
 </section>
 
@@ -295,7 +329,6 @@ if(ev) ev.target.classList.add('active');
 }
 
 const toggle=document.getElementById('themeToggle');
-
 function setTheme(t){
 document.documentElement.setAttribute('data-theme',t);
 localStorage.setItem("theme",t);
@@ -303,14 +336,29 @@ toggle.innerHTML = t==="light"
 ? "<i class='bx bx-sun'></i>"
 : "<i class='bx bx-moon'></i>";
 }
-
 const saved=localStorage.getItem("theme")||
 (window.matchMedia('(prefers-color-scheme:light)').matches?"light":"dark");
 setTheme(saved);
-
 toggle.onclick=()=>setTheme(
 document.documentElement.getAttribute("data-theme")==="light"?"dark":"light"
 );
+
+// AI Assistant (Frontend Mock)
+const answers = {
+"automl":"I built DataPilot AI, an AutoML platform that trains, compares, explains, and deploys ML models end-to-end.",
+"generative":"I use LLMs for analysis, reasoning, summarization, and building AI assistant-style interfaces.",
+"skills":"My strengths include ML systems, AutoML pipelines, explainable AI, and Generative AI workflows.",
+"projects":"My key projects include an AutoML platform, sales forecasting, and churn prediction systems."
+};
+
+document.getElementById("aiInput").addEventListener("keypress",e=>{
+if(e.key==="Enter"){
+let q=e.target.value.toLowerCase();
+let r="Great question. I focus on building practical ML and AI systems.";
+for(let k in answers){ if(q.includes(k)) r=answers[k]; }
+document.getElementById("aiOutput").innerText=r;
+}
+});
 </script>
 
 </body>
