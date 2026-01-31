@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Varun B — ML & Generative AI Engineer</title>
+<title>Varun B — Data Scientist & ML Engineer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
@@ -124,24 +124,6 @@ transition:.25s;
 
 .card:hover{transform:translateY(-6px)}
 
-input{
-width:100%;
-padding:14px;
-border-radius:12px;
-border:none;
-outline:none;
-margin-top:14px;
-font-family:'Poppins';
-}
-
-.ai-box{
-margin-top:14px;
-padding:16px;
-border-radius:14px;
-background:var(--card);
-min-height:60px;
-}
-
 .contact-links a{display:block;margin:12px 0}
 </style>
 </head>
@@ -154,8 +136,7 @@ min-height:60px;
 <div class="nav">
 <a onclick="show('home',event)" class="active">Home</a>
 <a onclick="show('skills',event)">Skills</a>
-<a onclick="show('lifecycle',event)">Lifecycle</a>
-<a onclick="show('ai',event)">AI</a>
+<a onclick="show('analytics',event)">Analytics & EDA</a>
 <a onclick="show('projects',event)">Projects</a>
 <a onclick="show('thinking',event)">Thinking</a>
 <a onclick="show('contact',event)">Contact</a>
@@ -171,12 +152,13 @@ min-height:60px;
 <div class="hero">
 <div class="hero-left">
 <h1>Hi, I'm Varun 👋</h1>
-<h3 style="color:var(--accent)">ML Engineer • Data Scientist • Generative AI Builder</h3>
+<h3 style="color:var(--accent)">Data Scientist • ML Engineer</h3>
 
 <p>
-I build <strong>production-grade Machine Learning and Generative AI systems</strong> —
-from raw data to deployed applications. My work focuses on AutoML platforms,
-predictive modeling, explainable AI, and LLM-powered workflows.
+I build <strong>production-ready data science and machine learning systems</strong> —
+from exploratory data analysis to model deployment.
+My work focuses on analytics, predictive modeling, AutoML systems,
+explainable AI, and ML applications with real business value.
 </p>
 
 <a class="btn" onclick="show('contact',event)">Let’s Work Together</a>
@@ -192,18 +174,17 @@ predictive modeling, explainable AI, and LLM-powered workflows.
 
 <!-- SKILLS -->
 <section id="skills" class="section">
-<h2 style="color:var(--accent)">Technical Expertise</h2>
+<h2 style="color:var(--accent)">Technical Skills</h2>
 
 <div class="grid">
 
 <div class="card">
-<h3>Data Analysis & EDA</h3>
+<h3>Data Science & Analytics</h3>
 <ul>
-<li>Univariate & Multivariate Analysis</li>
-<li>Distribution & Outlier Detection</li>
-<li>Correlation & Feature Relationships</li>
-<li>Target Leakage Detection</li>
-<li>Class Imbalance Analysis</li>
+<li>Exploratory Data Analysis (EDA)</li>
+<li>Statistical Analysis</li>
+<li>Business Insights & Reporting</li>
+<li>SQL & Tabular Data Analysis</li>
 </ul>
 </div>
 
@@ -213,17 +194,7 @@ predictive modeling, explainable AI, and LLM-powered workflows.
 <li>Regression & Classification</li>
 <li>Feature Engineering</li>
 <li>Cross-Validation & Metrics</li>
-<li>Error Analysis</li>
-</ul>
-</div>
-
-<div class="card">
-<h3>Generative AI & LLMs</h3>
-<ul>
-<li>Prompt Engineering</li>
-<li>LLM-assisted Analysis</li>
-<li>AI Q&A & Assistant Workflows</li>
-<li>Summarization & Reasoning</li>
+<li>Class Imbalance Handling</li>
 </ul>
 </div>
 
@@ -234,6 +205,16 @@ predictive modeling, explainable AI, and LLM-powered workflows.
 <li>Model Comparison</li>
 <li>SHAP Explainability</li>
 <li>Feature Importance</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Generative AI (Applied)</h3>
+<ul>
+<li>Prompt Engineering</li>
+<li>LLM-assisted Analysis</li>
+<li>AI-assisted Insight Generation</li>
+<li>Model Explanation & Summarization</li>
 </ul>
 </div>
 
@@ -250,62 +231,45 @@ predictive modeling, explainable AI, and LLM-powered workflows.
 </div>
 </section>
 
-<!-- DATA SCIENCE LIFECYCLE -->
-<section id="lifecycle" class="section">
-<h2 style="color:var(--accent)">📊 Data Science Lifecycle</h2>
-
-<p>
-I follow a structured data science workflow to ensure models are reliable,
-explainable, and production-ready.
-</p>
+<!-- ANALYTICS & EDA -->
+<section id="analytics" class="section">
+<h2 style="color:var(--accent)">📊 Data Analytics & EDA</h2>
 
 <div class="grid">
 
 <div class="card">
-<h3>1️⃣ Problem Understanding</h3>
-<p>Define business goals, success metrics, and constraints.</p>
+<h3>Exploratory Data Analysis</h3>
+<p>
+Analyze distributions, trends, correlations, missing values,
+outliers, and potential data leakage before modeling.
+</p>
 </div>
 
 <div class="card">
-<h3>2️⃣ Data Cleaning</h3>
-<p>Handle missing values, outliers, inconsistencies, and data validation.</p>
+<h3>Business-Focused Insights</h3>
+<p>
+Convert raw data into actionable insights using aggregation,
+segmentation, and comparative analysis.
+</p>
 </div>
 
 <div class="card">
-<h3>3️⃣ Exploratory Data Analysis (EDA)</h3>
-<p>Analyze distributions, trends, correlations, and leakage risks.</p>
+<h3>Visualization & Communication</h3>
+<p>
+Create clear charts and summaries to communicate findings
+to technical and non-technical stakeholders.
+</p>
 </div>
 
 <div class="card">
-<h3>4️⃣ Feature Engineering</h3>
-<p>Create meaningful features using domain logic.</p>
-</div>
-
-<div class="card">
-<h3>5️⃣ Modeling & Evaluation</h3>
-<p>Train, compare, and validate models with proper metrics.</p>
-</div>
-
-<div class="card">
-<h3>6️⃣ Explainability</h3>
-<p>Interpret predictions using SHAP and feature importance.</p>
-</div>
-
-<div class="card">
-<h3>7️⃣ Deployment</h3>
-<p>Deploy models and iterate based on performance.</p>
+<h3>Data Quality & Validation</h3>
+<p>
+Validate assumptions, check inconsistencies, and ensure
+data reliability for downstream ML tasks.
+</p>
 </div>
 
 </div>
-</section>
-
-<!-- AI ASSISTANT -->
-<section id="ai" class="section">
-<h2 style="color:var(--accent)">🤖 Portfolio AI Assistant</h2>
-<p>Ask about my projects, skills, or how I build ML & AI systems.</p>
-
-<input id="aiInput" placeholder="Ask about AutoML, EDA, or Generative AI..." />
-<div id="aiOutput" class="ai-box"></div>
 </section>
 
 <!-- PROJECTS -->
@@ -318,21 +282,27 @@ explainable, and production-ready.
 <h3>🤖 DataPilot AI — AutoML Platform</h3>
 <p><strong>Problem:</strong> Manual ML experimentation</p>
 <p><strong>Solution:</strong> End-to-end AutoML system</p>
-<p><strong>Impact:</strong> Faster model development & explainability</p>
+<p><strong>Impact:</strong> Faster model building with explainability</p>
+<a class="btn ghost" href="https://github.com/varun539/datapilot-ai" target="_blank">GitHub</a>
+<a class="btn" href="https://varun-datapilot-ai.streamlit.app/" target="_blank">Live Demo</a>
 </div>
 
 <div class="card">
 <h3>🛒 Walmart Sales Forecasting</h3>
-<p><strong>Problem:</strong> Sales prediction</p>
+<p><strong>Problem:</strong> Predict future sales</p>
 <p><strong>Solution:</strong> Regression with feature engineering</p>
 <p><strong>Impact:</strong> Improved forecast reliability</p>
+<a class="btn ghost" href="https://github.com/varun539/Walmart-sales-prediction" target="_blank">GitHub</a>
+<a class="btn" href="https://walmart-sales-prediction-varun.streamlit.app/" target="_blank">Live Demo</a>
 </div>
 
 <div class="card">
 <h3>📉 Customer Churn Prediction</h3>
-<p><strong>Problem:</strong> Predict customer churn</p>
+<p><strong>Problem:</strong> Identify customers at risk of churn</p>
 <p><strong>Solution:</strong> Classification with imbalance handling</p>
-<p><strong>Impact:</strong> Early churn detection</p>
+<p><strong>Impact:</strong> Early churn identification</p>
+<a class="btn ghost" href="https://github.com/varun539/customer-churn-app" target="_blank">GitHub</a>
+<a class="btn" href="https://customer-churn-app-by-varun.streamlit.app/" target="_blank">Live Demo</a>
 </div>
 
 </div>
@@ -343,10 +313,10 @@ explainable, and production-ready.
 <h2 style="color:var(--accent)">🧠 How I Think</h2>
 <ul>
 <li>Start with business understanding</li>
-<li>Respect the data before modeling</li>
-<li>Use EDA to reduce risk</li>
-<li>Prefer explainable solutions</li>
-<li>Build for deployment, not demos</li>
+<li>Use EDA to reduce modeling risk</li>
+<li>Prefer simple, explainable models</li>
+<li>Validate assumptions with data</li>
+<li>Build solutions ready for deployment</li>
 </ul>
 </section>
 
@@ -383,23 +353,6 @@ setTheme(saved);
 toggle.onclick=()=>setTheme(
 document.documentElement.getAttribute("data-theme")==="light"?"dark":"light"
 );
-
-// AI Assistant (Frontend Mock)
-const answers = {
-"eda":"I perform exploratory data analysis to understand distributions, correlations, outliers, and leakage risks before modeling.",
-"automl":"I built an AutoML platform that trains, compares, explains, and deploys ML models end-to-end.",
-"generative":"I use LLMs for reasoning, summarization, and building AI assistant-style workflows.",
-"skills":"My strengths include EDA, ML systems, AutoML, explainable AI, and Generative AI workflows."
-};
-
-document.getElementById("aiInput").addEventListener("keypress",e=>{
-if(e.key==="Enter"){
-let q=e.target.value.toLowerCase();
-let r="Great question. I focus on building practical ML and AI systems.";
-for(let k in answers){ if(q.includes(k)) r=answers[k]; }
-document.getElementById("aiOutput").innerText=r;
-}
-});
 </script>
 
 </body>
