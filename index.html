@@ -103,12 +103,21 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
 /* ── HERO ── */
 .hero {
-  min-height: 80vh;
+  min-height: 88vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
   padding: 40px 0;
 }
+
+.hero-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-left { display: flex; flex-direction: column; gap: 0; }
 
 .hero-badge {
   display: inline-flex;
@@ -121,28 +130,30 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   font-family: var(--mono);
   font-size: 11px;
   color: var(--accent);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
+  letter-spacing: 1.5px;
+  margin-bottom: 22px;
   width: fit-content;
 }
 
-.hero-badge::before {
-  content: '';
+.badge-dot {
   width: 6px; height: 6px;
   background: var(--green);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
 .hero h1 {
-  font-size: clamp(42px, 7vw, 88px);
+  font-size: clamp(36px, 5.5vw, 72px);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -2px;
+  margin-bottom: 18px;
 }
+
+.hero-role-line { display: block; }
 
 .hero h1 .highlight {
   background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -151,62 +162,158 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   background-clip: text;
 }
 
-.hero-sub {
-  margin-top: 24px;
-  font-size: 18px;
-  color: var(--muted);
-  max-width: 580px;
-  line-height: 1.7;
+.cursor-blink {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 300;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
 }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
+.hero-sub {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
 .hero-sub strong { color: var(--text); }
 
 /* Founder callout inline */
 .founder-inline {
-  margin-top: 20px;
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  padding: 12px 18px;
+  padding: 12px 16px;
   background: rgba(246,173,85,0.07);
   border: 1px solid rgba(246,173,85,0.22);
   border-radius: 12px;
-  font-size: 14px;
-  color: var(--amber);
-  max-width: 560px;
+  font-size: 13px;
+  max-width: 480px;
+  margin-bottom: 28px;
 }
 
-.founder-inline .fi-icon { font-size: 18px; flex-shrink: 0; }
-.founder-inline span { line-height: 1.5; color: rgba(246,173,85,0.85); }
+.founder-inline .fi-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.founder-inline span { line-height: 1.55; color: rgba(246,173,85,0.85); }
 .founder-inline strong { color: var(--amber); }
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
 
 .hero-stats {
   display: flex;
-  gap: 40px;
-  margin-top: 40px;
+  gap: 32px;
   flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
 }
 
 .stat-item { text-align: left; }
 .stat-num {
   font-family: var(--mono);
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--accent);
 }
 .stat-label {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 2px;
 }
 
-.hero-btns {
+/* ── TERMINAL WIDGET ── */
+.hero-right {
   display: flex;
-  gap: 14px;
-  margin-top: 44px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.terminal-card {
+  background: #0d1117;
+  border: 1px solid rgba(99,179,237,0.18);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,179,237,0.05);
+}
+
+.terminal-bar {
+  background: #161b22;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(99,179,237,0.1);
+}
+
+.t-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.t-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 8px;
+  letter-spacing: 0.5px;
+}
+
+.terminal-body {
+  padding: 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.9;
+  min-height: 280px;
+  color: #e2e8f0;
+}
+
+.t-line { display: flex; gap: 8px; }
+.t-prompt { color: var(--green); flex-shrink: 0; }
+.t-cmd { color: var(--accent); }
+.t-out { color: var(--muted); padding-left: 20px; }
+.t-val { color: var(--green); }
+.t-val-amber { color: var(--amber); }
+.t-val-purple { color: var(--accent2); }
+.t-comment { color: #3d4a5a; }
+.t-cursor { display: inline-block; background: var(--accent); width: 8px; height: 14px; vertical-align: middle; animation: blink 1s step-end infinite; margin-left: 4px; }
+
+/* chips below terminal */
+.hero-chips {
+  display: flex;
+  gap: 10px;
   flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--mono);
+  letter-spacing: 0.3px;
+}
+
+.chip-green { background: rgba(104,211,145,0.08); border: 1px solid rgba(104,211,145,0.2); color: var(--green); }
+.chip-blue  { background: rgba(99,179,237,0.08);  border: 1px solid rgba(99,179,237,0.2);  color: var(--accent); }
+.chip-amber { background: rgba(246,173,85,0.08);  border: 1px solid rgba(246,173,85,0.2);  color: var(--amber); }
+.chip-purple{ background: rgba(159,122,234,0.08); border: 1px solid rgba(159,122,234,0.2); color: var(--accent2); }
+
+.chip-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .btn-primary {
@@ -646,11 +753,16 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 .founder-banner-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
 .founder-banner-text strong { color: var(--amber); }
 
+@media(max-width:900px) {
+  .hero-cols { grid-template-columns: 1fr; gap: 40px; }
+  .hero-right { order: -1; }
+}
+
 @media(max-width:768px) {
   nav { padding: 16px 5%; }
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 11px; }
-  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .hero-stats { gap: 20px; }
   main { padding: 100px 5% 60px; }
   .project-card-featured { grid-template-columns: 1fr; gap: 20px; }
 }
@@ -679,64 +791,89 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 <!-- HOME -->
 <section id="home" class="section active">
   <div class="hero">
+    <div class="hero-cols">
 
-    <div class="hero-badge">
-      Available for Remote Roles
-    </div>
+      <!-- LEFT -->
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Open to Remote &middot; India
+        </div>
 
-    <h1>
-      Data Scientist<br/>
-      <span class="highlight">& ML Engineer</span>
-    </h1>
+        <h1>
+          Varun B<br/>
+          <span class="hero-role-line">
+            <span class="highlight" id="typed-role">AI Engineer</span><span class="cursor-blink">|</span>
+          </span>
+        </h1>
 
-    <p class="hero-sub">
-      I build <strong>production-grade ML and Agentic AI systems</strong> — not just notebooks.
-      Shipped a live AutoML platform powered by GPT-4o, SHAP, and full MLOps pipelines.
-      Available EU/UK overlap daily — <strong>I deliver while you sleep.</strong>
-    </p>
+        <p class="hero-sub">
+          I build <strong>production-grade ML and AI systems</strong> that ship live &mdash; not notebooks.
+          Agentic AI, AutoML pipelines, LLMs in real products.
+          <strong>I deliver while you sleep.</strong>
+        </p>
 
-    <div class="founder-inline">
-      <span class="fi-icon">🚀</span>
-      <span>
-        Also building <strong>DataAgent X</strong> — an AI analytics SaaS for Shopify stores.
-        Founder & sole engineer. Currently working towards first paying users.
-      </span>
-    </div>
+        <div class="founder-inline">
+          <span class="fi-icon">&#x26A1;</span>
+          <span>
+            Founder of <strong>DataAgent X</strong> &mdash; AI analytics copilot for ecommerce brands.
+            Sole engineer. Working towards first paying users.
+          </span>
+        </div>
 
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">0.83</div>
-        <div class="stat-label">R² Score</div>
+        <div class="hero-btns">
+          <span class="btn-primary" onclick="show('projects',document.querySelector('.nav-links a:nth-child(3)'))">
+            View Projects &rarr;
+          </span>
+          <a class="btn-amber" href="https://dataagentx.app" target="_blank">
+            &#x26A1; DataAgent X
+          </a>
+          <a class="btn-ghost" href="https://github.com/varun539" target="_blank">
+            GitHub &nearr;
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">0.83</div>
+            <div class="stat-label">R&sup2; Score</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Live Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">5</div>
+            <div class="stat-label">ML Models</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">11</div>
+            <div class="stat-label">Modules</div>
+          </div>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">4+</div>
-        <div class="stat-label">Live Projects</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">11</div>
-        <div class="stat-label">Module Files</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">5</div>
-        <div class="stat-label">ML Models</div>
-      </div>
-    </div>
 
-    <div class="hero-btns">
-      <span class="btn-primary" onclick="show('projects',document.querySelector('.nav-links a:nth-child(3)'))">
-        View Projects →
-      </span>
-      <a class="btn-amber" href="https://dataagentx.app" target="_blank">
-        ⚡ DataAgent X
-      </a>
-      <a class="btn-ghost" href="https://varun-datapilot-ai.streamlit.app/" target="_blank">
-        🚀 Live Demo
-      </a>
-      <a class="btn-ghost" href="https://github.com/varun539" target="_blank">
-        GitHub ↗
-      </a>
-    </div>
+      <!-- RIGHT: animated terminal -->
+      <div class="hero-right">
+        <div class="terminal-card">
+          <div class="terminal-bar">
+            <span class="t-dot" style="background:#ff5f57"></span>
+            <span class="t-dot" style="background:#febc2e"></span>
+            <span class="t-dot" style="background:#28c840"></span>
+            <span class="t-title">varun@ml &mdash; model_run.py</span>
+          </div>
+          <div class="terminal-body" id="terminal-body"></div>
+        </div>
 
+        <div class="hero-chips">
+          <div class="chip chip-green"><span class="chip-dot" style="background:var(--green)"></span>EU/UK overlap</div>
+          <div class="chip chip-blue"><span class="chip-dot" style="background:var(--accent)"></span>Async-ready</div>
+          <div class="chip chip-amber"><span class="chip-dot" style="background:var(--amber)"></span>Founder</div>
+          <div class="chip chip-purple"><span class="chip-dot" style="background:var(--accent2)"></span>Ships live</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -832,7 +969,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       <h3>Founder Stack</h3>
       <div class="skill-tags">
         <span class="tag-amber">SaaS Architecture</span>
-        <span class="tag-amber">Shopify API</span>
+        <span class="tag-amber">Ecommerce APIs</span>
         <span class="tag-amber">Supabase Auth</span>
         <span class="tag-amber">Stripe Payments</span>
         <span class="tag-amber">B2B Outreach</span>
@@ -868,14 +1005,14 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         <div class="featured-badge">Founder Project · In Progress</div>
         <h3>
           <span>DataAgent X</span><br/>
-          AI Analytics for Shopify
+          AI Analytics for Ecommerce
         </h3>
         <p>
-          Built solo from scratch — no team, no funding. DataAgent X plugs into a Shopify store and delivers an AI Business Copilot: conversational analytics, churn prediction, revenue forecasting, and SHAP-powered insights — all in plain English. Store owners get answers, not dashboards.
+          Built solo from scratch — no team, no funding. DataAgent X plugs into any ecommerce store and delivers an AI Business Copilot: conversational analytics, churn prediction, revenue forecasting, and SHAP-powered insights — all in plain English. Store owners get answers, not dashboards.
         </p>
         <div class="featured-stack">
           <span class="tag-amber">SaaS</span>
-          <span class="tag-amber">Shopify API</span>
+          <span class="tag-amber">Ecommerce APIs</span>
           <span class="tag-amber">Stripe</span>
           <span class="tag-amber">Supabase</span>
           <span class="tag">FastAPI</span>
@@ -904,7 +1041,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
           </div>
           <div class="traction-row">
             <div class="dot"></div>
-            <span>Leading <strong>B2B outreach</strong> + market validation solo</span>
+            <span>Leading <strong>B2B outreach</strong> to ecommerce brands + market validation solo</span>
           </div>
           <div class="traction-row">
             <div class="dot"></div>
@@ -1077,7 +1214,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   <div class="contact-wrap">
     <p>
       Data Science engineer from India, actively seeking <strong>remote DS/ML/AI roles globally</strong>.
-      Available 5–6hrs EU/UK overlap daily. Fully async-capable. Also building DataAgent X on the side.
+      Available 5–6hrs EU/UK overlap daily. Fully async-capable. Also building DataAgent X — AI analytics for ecommerce brands — on the side.
     </p>
 
     <div class="contact-links">
@@ -1149,8 +1286,8 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
     <div class="founder-banner">
       <div class="founder-banner-icon">⚡</div>
       <div class="founder-banner-text">
-        <strong>Also a founder —</strong> building DataAgent X solo. If you're a Shopify store owner
-        or know one, I'd love to connect. Working towards first paying users and always up for a conversation.
+        <strong>Also a founder —</strong> building DataAgent X solo. If you run an ecommerce brand
+        or know someone who does, I'd love to connect. Working towards first paying users and always up for a conversation.
       </div>
     </div>
 
@@ -1189,6 +1326,74 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   var firstNav = document.querySelector('.nav-links a');
   if (firstNav) firstNav.classList.add('active');
+
+  // ── TYPED ROLE ──
+  var roles = ['AI Engineer', 'ML Engineer', 'Data Scientist', 'AI Founder', 'AI Builder'];
+  var ri = 0, ci = 0, deleting = false;
+  var el = document.getElementById('typed-role');
+  function typeRole() {
+    if (!el) return;
+    var word = roles[ri];
+    if (!deleting) {
+      el.textContent = word.slice(0, ci + 1);
+      ci++;
+      if (ci === word.length) { deleting = true; setTimeout(typeRole, 1800); return; }
+      setTimeout(typeRole, 80);
+    } else {
+      el.textContent = word.slice(0, ci - 1);
+      ci--;
+      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; setTimeout(typeRole, 300); return; }
+      setTimeout(typeRole, 45);
+    }
+  }
+  setTimeout(typeRole, 600);
+
+  // ── TERMINAL ──
+  var tb = document.getElementById('terminal-body');
+  var lines = [
+    { type: 'cmd',     text: 'python model_run.py --data ecomm.csv' },
+    { type: 'out',     text: '&#x25B8; Loading dataset... 42,891 rows', cls: 't-val' },
+    { type: 'out',     text: '&#x25B8; Running feature engineering...', cls: 't-out' },
+    { type: 'out',     text: '&#x25B8; Training XGBoost, LightGBM, CatBoost...', cls: 't-out' },
+    { type: 'result',  text: '  CatBoost  R&#178; = <b style="color:var(--green)">0.8312</b>  &#10003; best model' },
+    { type: 'result',  text: '  LightGBM  R&#178; = 0.8190' },
+    { type: 'result',  text: '  XGBoost   R&#178; = 0.8051' },
+    { type: 'gap' },
+    { type: 'cmd',     text: 'python explain.py --shap' },
+    { type: 'out',     text: '&#x25B8; Generating SHAP explanations...', cls: 't-out' },
+    { type: 'result',  text: '  Top feature: <b style="color:var(--amber)">avg_order_value</b>  (+0.31)' },
+    { type: 'result',  text: '  Churn risk:  <b style="color:#fc8181)">HIGH</b> for 2,104 users' },
+    { type: 'gap' },
+    { type: 'cmd',     text: 'python copilot.py --ask "Why did revenue drop?"' },
+    { type: 'ai',      text: '&#x25BA; Revenue fell 12% — cart abandonment up in mobile (68%), top SKU out of stock since Tue.' },
+    { type: 'prompt' }
+  ];
+
+  var li = 0;
+  function addLine() {
+    if (li >= lines.length) return;
+    var l = lines[li++];
+    var div = document.createElement('div');
+    div.className = 't-line';
+
+    if (l.type === 'cmd') {
+      div.innerHTML = '<span class="t-prompt">&#x276F;</span><span class="t-cmd">' + l.text + '</span>';
+    } else if (l.type === 'out' || l.type === 'result') {
+      div.innerHTML = '<span class="' + (l.cls || 't-out') + '">' + l.text + '</span>';
+    } else if (l.type === 'ai') {
+      div.innerHTML = '<span class="t-val-purple">' + l.text + '</span>';
+    } else if (l.type === 'gap') {
+      div.innerHTML = '&nbsp;';
+    } else if (l.type === 'prompt') {
+      div.innerHTML = '<span class="t-prompt">&#x276F;</span><span class="t-cursor"></span>';
+    }
+
+    tb.appendChild(div);
+    tb.scrollTop = tb.scrollHeight;
+    var delay = l.type === 'cmd' ? 600 : l.type === 'gap' ? 200 : 180;
+    setTimeout(addLine, delay);
+  }
+  setTimeout(addLine, 800);
 });
 </script>
 </body>
