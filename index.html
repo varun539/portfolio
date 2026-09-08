@@ -14,6 +14,7 @@
   --accent: #63b3ed;
   --accent2: #9f7aea;
   --green: #68d391;
+  --amber: #f6ad55;
   --text: #e2e8f0;
   --muted: #718096;
   --mono: 'Space Mono', monospace;
@@ -21,7 +22,6 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -31,7 +31,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NOISE OVERLAY ── */
 body::before {
   content: '';
   position: fixed;
@@ -41,7 +40,6 @@ body::before {
   z-index: 0;
 }
 
-/* ── ANIMATED GRID BG ── */
 .grid-bg {
   position: fixed;
   inset: 0;
@@ -53,7 +51,6 @@ body::before {
   z-index: 0;
 }
 
-/* ── GLOW ORBS ── */
 .orb {
   position: fixed;
   border-radius: 50%;
@@ -64,11 +61,11 @@ body::before {
 }
 .orb-1 { width: 500px; height: 500px; background: var(--accent); top: -200px; right: -100px; animation: drift1 20s ease-in-out infinite; }
 .orb-2 { width: 400px; height: 400px; background: var(--accent2); bottom: -100px; left: -100px; animation: drift2 25s ease-in-out infinite; }
+.orb-3 { width: 300px; height: 300px; background: var(--amber); top: 40%; left: 40%; opacity: 0.05; animation: drift1 30s ease-in-out infinite reverse; }
 
 @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-80px,60px)} }
 @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,-40px)} }
 
-/* ── NAV ── */
 nav {
   position: fixed; top: 0; width: 100%;
   padding: 20px 8%;
@@ -99,7 +96,6 @@ nav {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-/* ── SECTIONS ── */
 .section { display: none; position: relative; z-index: 1; }
 .section.active { display: block; }
 
@@ -128,7 +124,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 30px;
-  animation: fadeUp 0.6s ease both;
+  width: fit-content;
 }
 
 .hero-badge::before {
@@ -146,7 +142,6 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -2px;
-  animation: fadeUp 0.6s ease 0.1s both;
 }
 
 .hero h1 .highlight {
@@ -162,16 +157,34 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   color: var(--muted);
   max-width: 580px;
   line-height: 1.7;
-  animation: fadeUp 0.6s ease 0.2s both;
 }
 
 .hero-sub strong { color: var(--text); }
+
+/* Founder callout inline */
+.founder-inline {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: rgba(246,173,85,0.07);
+  border: 1px solid rgba(246,173,85,0.22);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--amber);
+  max-width: 560px;
+}
+
+.founder-inline .fi-icon { font-size: 18px; flex-shrink: 0; }
+.founder-inline span { line-height: 1.5; color: rgba(246,173,85,0.85); }
+.founder-inline strong { color: var(--amber); }
 
 .hero-stats {
   display: flex;
   gap: 40px;
   margin-top: 40px;
-  animation: fadeUp 0.6s ease 0.3s both;
+  flex-wrap: wrap;
 }
 
 .stat-item { text-align: left; }
@@ -194,7 +207,6 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   gap: 14px;
   margin-top: 44px;
   flex-wrap: wrap;
-  animation: fadeUp 0.6s ease 0.4s both;
 }
 
 .btn-primary {
@@ -232,6 +244,23 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
+.btn-amber {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(246,173,85,0.12);
+  color: var(--amber);
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid rgba(246,173,85,0.3);
+}
+.btn-amber:hover { background: rgba(246,173,85,0.2); transform: translateY(-2px); }
+
 /* ── SECTION HEADERS ── */
 .sec-label {
   font-family: var(--mono);
@@ -249,7 +278,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   margin-bottom: 40px;
 }
 
-/* ── SKILLS GRID ── */
+/* ── SKILLS ── */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -280,10 +309,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 .skill-card:hover { transform: translateY(-4px); border-color: rgba(99,179,237,0.3); }
 .skill-card:hover::before { transform: scaleX(1); }
 
-.skill-icon {
-  font-size: 28px;
-  margin-bottom: 14px;
-}
+.skill-icon { font-size: 28px; margin-bottom: 14px; }
 
 .skill-card h3 {
   font-size: 15px;
@@ -292,11 +318,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   color: var(--text);
 }
 
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
 .tag {
   font-family: var(--mono);
@@ -309,6 +331,17 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   letter-spacing: 0.5px;
 }
 
+.tag-amber {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(246,173,85,0.08);
+  border: 1px solid rgba(246,173,85,0.2);
+  color: var(--amber);
+  letter-spacing: 0.5px;
+}
+
 /* ── PROJECTS ── */
 .projects-grid {
   display: grid;
@@ -316,6 +349,149 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   gap: 24px;
 }
 
+/* Featured founder card — full width */
+.project-card-featured {
+  grid-column: 1 / -1;
+  background: var(--card);
+  border: 1px solid rgba(246,173,85,0.25);
+  border-radius: 20px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.project-card-featured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--accent2), var(--accent));
+}
+
+.project-card-featured:hover {
+  border-color: rgba(246,173,85,0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(246,173,85,0.08);
+}
+
+.featured-left { display: flex; flex-direction: column; gap: 14px; }
+.featured-right { display: flex; flex-direction: column; gap: 14px; justify-content: space-between; }
+
+.featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: rgba(246,173,85,0.1);
+  border: 1px solid rgba(246,173,85,0.3);
+  color: var(--amber);
+  letter-spacing: 1px;
+  width: fit-content;
+}
+
+.featured-badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--amber);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.project-card-featured h3 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.project-card-featured h3 span {
+  background: linear-gradient(135deg, var(--amber), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.project-card-featured p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.traction-box {
+  background: rgba(246,173,85,0.05);
+  border: 1px solid rgba(246,173,85,0.15);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.traction-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--amber);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.traction-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.traction-row .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.traction-row strong { color: var(--text); }
+
+.featured-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+.featured-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.p-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.p-btn-primary { background: var(--accent); color: var(--bg); border: none; }
+.p-btn-primary:hover { box-shadow: 0 8px 20px rgba(99,179,237,0.3); }
+
+.p-btn-amber { background: rgba(246,173,85,0.12); color: var(--amber); border: 1px solid rgba(246,173,85,0.3); }
+.p-btn-amber:hover { background: rgba(246,173,85,0.2); }
+
+.p-btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.p-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Regular project cards */
 .project-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -329,26 +505,9 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   overflow: hidden;
 }
 
-.project-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(99,179,237,0.04), rgba(159,122,234,0.04));
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-
 .project-card:hover { transform: translateY(-6px); border-color: rgba(99,179,237,0.25); }
-.project-card:hover::after { opacity: 1; }
 
-.project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
+.project-header { display: flex; justify-content: space-between; align-items: flex-start; }
 .project-emoji { font-size: 32px; }
 
 .project-status {
@@ -362,32 +521,11 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   letter-spacing: 1px;
 }
 
-.project-card h3 {
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-}
+.project-card h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
+.project-card p { font-size: 14px; color: var(--muted); line-height: 1.7; flex: 1; }
 
-.project-card p {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.7;
-  flex: 1;
-}
-
-.project-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.meta-row {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-size: 13px;
-}
-
+.project-meta { display: flex; flex-direction: column; gap: 8px; }
+.meta-row { display: flex; gap: 8px; align-items: center; font-size: 13px; }
 .meta-label {
   font-family: var(--mono);
   font-size: 10px;
@@ -396,49 +534,11 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   text-transform: uppercase;
   min-width: 60px;
 }
-
 .meta-val { color: var(--muted); }
 .meta-val strong { color: var(--green); }
 
-.project-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.project-btns {
-  display: flex;
-  gap: 10px;
-  position: relative;
-  z-index: 10;
-}
-
-.p-btn {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s;
-  position: relative;
-  z-index: 10;
-  cursor: pointer;
-}
-
-.p-btn-primary {
-  background: var(--accent);
-  color: var(--bg);
-}
-.p-btn-primary:hover { box-shadow: 0 8px 20px rgba(99,179,237,0.3); }
-
-.p-btn-ghost {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-}
-.p-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-btns { display: flex; gap: 10px; position: relative; z-index: 10; }
 
 /* ── THINKING ── */
 .thinking-grid {
@@ -465,19 +565,11 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   margin-bottom: 12px;
 }
 
-.think-card h3 {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: var(--accent);
-}
-
+.think-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--accent); }
 .think-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
 /* ── CONTACT ── */
-.contact-wrap {
-  max-width: 600px;
-}
+.contact-wrap { max-width: 600px; }
 
 .contact-wrap p {
   font-size: 16px;
@@ -486,11 +578,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   margin-bottom: 32px;
 }
 
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+.contact-links { display: flex; flex-direction: column; gap: 14px; }
 
 .contact-item {
   display: flex;
@@ -518,12 +606,10 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 .contact-info { flex: 1; }
 .contact-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-family: var(--mono); }
 .contact-val { font-size: 15px; font-weight: 600; margin-top: 2px; }
-
 .contact-arrow { color: var(--muted); font-size: 18px; }
 
-/* ── OPEN TO WORK BANNER ── */
 .otw-banner {
-  margin-top: 40px;
+  margin-top: 24px;
   padding: 20px 24px;
   background: rgba(104,211,145,0.06);
   border: 1px solid rgba(104,211,145,0.2);
@@ -544,19 +630,29 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 .otw-text { font-size: 14px; color: var(--muted); }
 .otw-text strong { color: var(--green); }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* founder banner in contact */
+.founder-banner {
+  margin-top: 14px;
+  padding: 20px 24px;
+  background: rgba(246,173,85,0.05);
+  border: 1px solid rgba(246,173,85,0.2);
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
 }
 
-/* ── RESPONSIVE ── */
+.founder-banner-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.founder-banner-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.founder-banner-text strong { color: var(--amber); }
+
 @media(max-width:768px) {
   nav { padding: 16px 5%; }
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 11px; }
   .hero-stats { gap: 24px; flex-wrap: wrap; }
   main { padding: 100px 5% 60px; }
+  .project-card-featured { grid-template-columns: 1fr; gap: 20px; }
 }
 </style>
 </head>
@@ -565,6 +661,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 <div class="grid-bg"></div>
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
 <nav>
   <div class="logo">VARUN.B</div>
@@ -598,6 +695,14 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       Available EU/UK overlap daily — <strong>I deliver while you sleep.</strong>
     </p>
 
+    <div class="founder-inline">
+      <span class="fi-icon">🚀</span>
+      <span>
+        Also building <strong>DataAgent X</strong> — an AI analytics SaaS for Shopify stores.
+        Founder & sole engineer. Currently working towards first paying users.
+      </span>
+    </div>
+
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num">0.83</div>
@@ -621,6 +726,9 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       <span class="btn-primary" onclick="show('projects',document.querySelector('.nav-links a:nth-child(3)'))">
         View Projects →
       </span>
+      <a class="btn-amber" href="https://dataagentx.app" target="_blank">
+        ⚡ DataAgent X
+      </a>
       <a class="btn-ghost" href="https://varun-datapilot-ai.streamlit.app/" target="_blank">
         🚀 Live Demo
       </a>
@@ -690,13 +798,45 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
     <div class="skill-card">
       <div class="skill-icon">🔮</div>
-      <h3>AI & GenAI</h3>
+      <h3>AI Engineering</h3>
       <div class="skill-tags">
         <span class="tag">GPT-4o API</span>
         <span class="tag">OpenAI SDK</span>
         <span class="tag">Prompt Engineering</span>
-        <span class="tag">LLM Integration</span>
-        <span class="tag">RAG (Conceptual)</span>
+        <span class="tag">LLM Tool Calling</span>
+        <span class="tag">AI Agent Systems</span>
+        <span class="tag">LangGraph</span>
+        <span class="tag">LLM Evaluation</span>
+        <span class="tag">AI Observability</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">⚙️</div>
+      <h3>Backend & Cloud</h3>
+      <div class="skill-tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">Next.js</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Stripe</span>
+        <span class="tag">Render</span>
+        <span class="tag">Vercel</span>
+        <span class="tag">Hostinger</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🏗️</div>
+      <h3>Founder Stack</h3>
+      <div class="skill-tags">
+        <span class="tag-amber">SaaS Architecture</span>
+        <span class="tag-amber">Shopify API</span>
+        <span class="tag-amber">Supabase Auth</span>
+        <span class="tag-amber">Stripe Payments</span>
+        <span class="tag-amber">B2B Outreach</span>
+        <span class="tag-amber">Solo Shipping</span>
       </div>
     </div>
 
@@ -707,7 +847,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         <span class="tag">Git</span>
         <span class="tag">GitHub</span>
         <span class="tag">Jupyter</span>
-        <span class="tag">MySQL</span>
+        <span class="tag">SQL</span>
         <span class="tag">Kaggle</span>
       </div>
     </div>
@@ -722,14 +862,71 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
   <div class="projects-grid">
 
+    <!-- DataAgent X — Featured Founder Card -->
+    <div class="project-card-featured">
+      <div class="featured-left">
+        <div class="featured-badge">Founder Project · In Progress</div>
+        <h3>
+          <span>DataAgent X</span><br/>
+          AI Analytics for Shopify
+        </h3>
+        <p>
+          Built solo from scratch — no team, no funding. DataAgent X plugs into a Shopify store and delivers an AI Business Copilot: conversational analytics, churn prediction, revenue forecasting, and SHAP-powered insights — all in plain English. Store owners get answers, not dashboards.
+        </p>
+        <div class="featured-stack">
+          <span class="tag-amber">SaaS</span>
+          <span class="tag-amber">Shopify API</span>
+          <span class="tag-amber">Stripe</span>
+          <span class="tag-amber">Supabase</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">GPT-4o</span>
+          <span class="tag">Python</span>
+          <span class="tag">SHAP</span>
+          <span class="tag">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="featured-right">
+        <div class="traction-box">
+          <div class="traction-label">What's Built</div>
+          <div class="traction-row">
+            <div class="dot"></div>
+            <span><strong>AI Business Copilot</strong> — GPT-4o conversational analytics over live ecommerce data</span>
+          </div>
+          <div class="traction-row">
+            <div class="dot"></div>
+            <span><strong>Shopify + Stripe + Supabase</strong> — full production infra, JWT auth, PDF reporting</span>
+          </div>
+          <div class="traction-row">
+            <div class="dot"></div>
+            <span>ML layer: churn prediction, revenue forecasting, SHAP explainability</span>
+          </div>
+          <div class="traction-row">
+            <div class="dot"></div>
+            <span>Leading <strong>B2B outreach</strong> + market validation solo</span>
+          </div>
+          <div class="traction-row">
+            <div class="dot"></div>
+            <span>Working towards <strong>first paying users</strong> — actively iterating toward PMF</span>
+          </div>
+        </div>
+
+        <div class="featured-btns">
+          <button class="p-btn p-btn-amber" onclick="window.open('https://dataagentx.app','_blank')">Visit DataAgent X →</button>
+          <button class="p-btn p-btn-ghost" onclick="window.open('https://github.com/varun539','_blank')">GitHub ↗</button>
+        </div>
+      </div>
+    </div>
+
     <!-- DataPilot -->
     <div class="project-card">
       <div class="project-header">
         <div class="project-emoji">🚀</div>
         <span class="project-status">LIVE</span>
       </div>
-      <h3>DataPilot AI — Agentic AutoML</h3>
-      <p>Upload any CSV → 5 ML models trained automatically → GPT-4o explains results in plain English → Chat with your data → Download PDF report. Real system, not a notebook.</p>
+      <h3>DataPilot AI — Production AutoML</h3>
+      <p>CSV upload → 5 models trained via cross-validation → GPT-powered dataset understanding → SHAP explainability → executive AI report → PDF download. Modular ML workflows: preprocessing, leakage detection, experiment tracking, model registry, batch prediction.</p>
 
       <div class="project-meta">
         <div class="meta-row">
@@ -738,15 +935,16 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         </div>
         <div class="meta-row">
           <span class="meta-label">Stack</span>
-          <span class="meta-val">GPT-4o · SHAP · XGBoost · LightGBM · CatBoost</span>
+          <span class="meta-val">GPT-4o · SHAP · XGBoost · LightGBM · CatBoost · Streamlit</span>
         </div>
       </div>
 
       <div class="project-stack">
-        <span class="tag">Agentic AI</span>
+        <span class="tag">AutoML</span>
         <span class="tag">MLOps</span>
         <span class="tag">SHAP</span>
         <span class="tag">GPT-4o</span>
+        <span class="tag">LLM Reporting</span>
         <span class="tag">Streamlit</span>
       </div>
 
@@ -864,8 +1062,8 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
     <div class="think-card">
       <div class="think-num">06</div>
-      <h3>AI as Translator</h3>
-      <p>GPT-4o doesn't replace ML — it translates model math into business language. That's the real value of Agentic AI.</p>
+      <h3>Founder Mindset</h3>
+      <p>Running DataAgent X solo taught me that ownership beats everything. I don't wait for specs — I figure out what's needed and ship it.</p>
     </div>
 
   </div>
@@ -878,8 +1076,8 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
   <div class="contact-wrap">
     <p>
-      I'm a Data Science engineer from India actively seeking <strong>remote DS/ML/AI roles globally</strong>.
-      Available 5-6hrs EU/UK overlap daily. Fully async-capable.
+      Data Science engineer from India, actively seeking <strong>remote DS/ML/AI roles globally</strong>.
+      Available 5–6hrs EU/UK overlap daily. Fully async-capable. Also building DataAgent X on the side.
     </p>
 
     <div class="contact-links">
@@ -893,11 +1091,20 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         <div class="contact-arrow">→</div>
       </a>
 
-      <a class="contact-item" href="https://www.linkedin.com/in/varun-b-647b1730a" target="_blank">
+      <a class="contact-item" href="https://www.linkedin.com/in/varun-dataagentx" target="_blank">
         <div class="contact-icon">💼</div>
         <div class="contact-info">
           <div class="contact-label">LinkedIn</div>
-          <div class="contact-val">linkedin.com/in/varun-b-647b1730a</div>
+          <div class="contact-val">linkedin.com/in/varun-dataagentx</div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+
+      <a class="contact-item" href="tel:+916235067320">
+        <div class="contact-icon">📱</div>
+        <div class="contact-info">
+          <div class="contact-label">Phone / WhatsApp</div>
+          <div class="contact-val">+91 6235067320</div>
         </div>
         <div class="contact-arrow">→</div>
       </a>
@@ -907,6 +1114,15 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         <div class="contact-info">
           <div class="contact-label">GitHub</div>
           <div class="contact-val">github.com/varun539</div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+
+      <a class="contact-item" href="https://dataagentx.app" target="_blank">
+        <div class="contact-icon">⚡</div>
+        <div class="contact-info">
+          <div class="contact-label">SaaS Product</div>
+          <div class="contact-val">dataagentx.app</div>
         </div>
         <div class="contact-arrow">→</div>
       </a>
@@ -927,6 +1143,14 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       <div class="otw-text">
         <strong>Open to Remote Work</strong> — Data Scientist · ML Engineer · AI Engineer ·
         Available EU/UK overlap · Fully async-capable · I deliver while you sleep 🚀
+      </div>
+    </div>
+
+    <div class="founder-banner">
+      <div class="founder-banner-icon">⚡</div>
+      <div class="founder-banner-text">
+        <strong>Also a founder —</strong> building DataAgent X solo. If you're a Shopify store owner
+        or know one, I'd love to connect. Working towards first paying users and always up for a conversation.
       </div>
     </div>
 
@@ -954,18 +1178,15 @@ function show(id, el) {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-  // Hide all sections first
   document.querySelectorAll('.section').forEach(function(s) {
     s.style.display = 'none';
     s.classList.remove('active');
   });
-  // Show home
   var home = document.getElementById('home');
   if (home) {
     home.style.display = 'block';
     home.classList.add('active');
   }
-  // Mark home nav active
   var firstNav = document.querySelector('.nav-links a');
   if (firstNav) firstNav.classList.add('active');
 });
