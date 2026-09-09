@@ -598,6 +598,137 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 .p-btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
 .p-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
+/* ── DATAAGENT X CARD ── */
+.dax-card {
+  grid-column: 1 / -1;
+  background: var(--card);
+  border: 1px solid rgba(246,173,85,0.22);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s;
+}
+.dax-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--accent2), var(--accent));
+}
+.dax-card:hover {
+  border-color: rgba(246,173,85,0.4);
+  box-shadow: 0 24px 80px rgba(246,173,85,0.07);
+  transform: translateY(-3px);
+}
+.dax-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: start;
+  padding: 32px 32px 24px;
+  border-bottom: 1px solid rgba(246,173,85,0.1);
+}
+.dax-top-left { display: flex; flex-direction: column; gap: 12px; }
+.dax-title { display: flex; flex-direction: column; gap: 6px; }
+.dax-name {
+  background: linear-gradient(135deg, var(--amber), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.dax-sub { font-size: 16px; font-weight: 600; color: var(--text); }
+.dax-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 560px; }
+.dax-top-right { flex-shrink: 0; }
+.dax-cta-box {
+  background: rgba(246,173,85,0.06);
+  border: 1px solid rgba(246,173,85,0.2);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 200px;
+  text-align: center;
+}
+.dax-cta-label { font-family: var(--mono); font-size: 10px; color: var(--green); letter-spacing: 1px; }
+.dax-main-btn {
+  background: linear-gradient(135deg, var(--amber), #e8920a);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-weight: 800;
+  font-size: 14px;
+  font-family: var(--sans);
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+.dax-main-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(246,173,85,0.35); }
+.dax-cta-note { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+
+.dax-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.dax-feat {
+  display: flex;
+  gap: 12px;
+  padding: 20px 22px;
+  border-right: 1px solid rgba(246,173,85,0.08);
+  border-bottom: 1px solid rgba(246,173,85,0.08);
+  transition: background 0.2s;
+  align-items: flex-start;
+}
+.dax-feat:hover { background: rgba(246,173,85,0.04); }
+.dax-feat:nth-child(4n) { border-right: none; }
+.dax-feat:nth-last-child(-n+4) { border-bottom: none; }
+.dax-feat-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.dax-feat-body { display: flex; flex-direction: column; gap: 4px; }
+.dax-feat-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.dax-feat-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+.dax-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: rgba(246,173,85,0.03);
+  border-top: 1px solid rgba(246,173,85,0.1);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.dax-bottom-tags { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.dax-btag {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  letter-spacing: 0.3px;
+}
+.dax-btag-amber { color: var(--amber); background: rgba(246,173,85,0.07); border-color: rgba(246,173,85,0.2); }
+
+@media(max-width:1000px) {
+  .dax-features { grid-template-columns: repeat(2,1fr); }
+  .dax-feat:nth-child(4n) { border-right: inherit; }
+  .dax-feat:nth-child(2n) { border-right: none; }
+  .dax-feat:nth-last-child(-n+4) { border-bottom: 1px solid rgba(246,173,85,0.08); }
+  .dax-feat:nth-last-child(-n+2) { border-bottom: none; }
+}
+@media(max-width:680px) {
+  .dax-top { grid-template-columns: 1fr; }
+  .dax-features { grid-template-columns: 1fr; }
+  .dax-feat { border-right: none !important; border-bottom: 1px solid rgba(246,173,85,0.08) !important; }
+  .dax-feat:last-child { border-bottom: none !important; }
+}
+
 /* Regular project cards */
 .project-card {
   background: var(--card);
@@ -714,6 +845,88 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 .contact-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; font-family: var(--mono); }
 .contact-val { font-size: 15px; font-weight: 600; margin-top: 2px; }
 .contact-arrow { color: var(--muted); font-size: 18px; }
+
+/* contact split styles */
+.contact-split-label {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.csl-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.csl-job {
+  background: rgba(99,179,237,0.08);
+  border: 1px solid rgba(99,179,237,0.25);
+  color: var(--accent);
+}
+
+.csl-founder {
+  background: rgba(246,173,85,0.08);
+  border: 1px solid rgba(246,173,85,0.25);
+  color: var(--amber);
+}
+
+.contact-item-job { border-color: rgba(99,179,237,0.15); }
+.contact-item-job:hover { border-color: var(--accent); }
+
+.contact-item-founder { border-color: rgba(246,173,85,0.15); }
+.contact-item-founder:hover { border-color: var(--amber); }
+
+.contact-meta-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.csl-job-tag {
+  background: rgba(99,179,237,0.08);
+  border: 1px solid rgba(99,179,237,0.2);
+  color: var(--accent);
+}
+
+.csl-founder-tag {
+  background: rgba(246,173,85,0.08);
+  border: 1px solid rgba(246,173,85,0.2);
+  color: var(--amber);
+}
+
+.contact-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0 2px;
+}
+
+.contact-divider::before,
+.contact-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(246,173,85,0.15);
+}
+
+.contact-divider span {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--amber);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
 
 .otw-banner {
   margin-top: 24px;
@@ -1000,60 +1213,108 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   <div class="projects-grid">
 
     <!-- DataAgent X — Featured Founder Card -->
-    <div class="project-card-featured">
-      <div class="featured-left">
-        <div class="featured-badge">Founder Project · In Progress</div>
-        <h3>
-          <span>DataAgent X</span><br/>
-          AI Analytics for Ecommerce
-        </h3>
-        <p>
-          Built solo from scratch — no team, no funding. DataAgent X plugs into any ecommerce store and delivers an AI Business Copilot: conversational analytics, churn prediction, revenue forecasting, and SHAP-powered insights — all in plain English. Store owners get answers, not dashboards.
-        </p>
-        <div class="featured-stack">
-          <span class="tag-amber">SaaS</span>
-          <span class="tag-amber">Ecommerce APIs</span>
-          <span class="tag-amber">Stripe</span>
-          <span class="tag-amber">Supabase</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">Next.js</span>
-          <span class="tag">GPT-4o</span>
-          <span class="tag">Python</span>
-          <span class="tag">SHAP</span>
-          <span class="tag">PostgreSQL</span>
+    <div class="dax-card">
+
+      <div class="dax-top">
+        <div class="dax-top-left">
+          <div class="featured-badge">&#x26A1; Founder Project &nbsp;&middot;&nbsp; Working towards first paying users</div>
+          <h3 class="dax-title">
+            <span class="dax-name">DataAgent X</span>
+            <span class="dax-sub">Your store's AI analyst &mdash; plain-English answers, not dashboards.</span>
+          </h3>
+          <p class="dax-desc">
+            Upload your customer or revenue data and DataAgent X tells you exactly what's working, what's not, and what to do next &mdash; built for ecommerce owners who want clarity, not charts.
+          </p>
+        </div>
+        <div class="dax-top-right">
+          <div class="dax-cta-box">
+            <div class="dax-cta-label">&#x2714; No setup &nbsp;&#x2014;&nbsp; Just upload &amp; ask</div>
+            <button class="dax-main-btn" onclick="window.open('https://dataagentx.app','_blank')">
+              Visit DataAgent X &rarr;
+            </button>
+            <div class="dax-cta-note">Works with any ecommerce data</div>
+          </div>
         </div>
       </div>
 
-      <div class="featured-right">
-        <div class="traction-box">
-          <div class="traction-label">What's Built</div>
-          <div class="traction-row">
-            <div class="dot"></div>
-            <span><strong>AI Business Copilot</strong> — GPT-4o conversational analytics over live ecommerce data</span>
-          </div>
-          <div class="traction-row">
-            <div class="dot"></div>
-            <span><strong>Shopify + Stripe + Supabase</strong> — full production infra, JWT auth, PDF reporting</span>
-          </div>
-          <div class="traction-row">
-            <div class="dot"></div>
-            <span>ML layer: churn prediction, revenue forecasting, SHAP explainability</span>
-          </div>
-          <div class="traction-row">
-            <div class="dot"></div>
-            <span>Leading <strong>B2B outreach</strong> to ecommerce brands + market validation solo</span>
-          </div>
-          <div class="traction-row">
-            <div class="dot"></div>
-            <span>Working towards <strong>first paying users</strong> — actively iterating toward PMF</span>
+      <div class="dax-features">
+
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F4C9;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">Churn Prediction</div>
+            <div class="dax-feat-desc">See which customers are about to leave before they do &mdash; with a ranked list and reasons so you can act first.</div>
           </div>
         </div>
 
-        <div class="featured-btns">
-          <button class="p-btn p-btn-amber" onclick="window.open('https://dataagentx.app','_blank')">Visit DataAgent X →</button>
-          <button class="p-btn p-btn-ghost" onclick="window.open('https://github.com/varun539','_blank')">GitHub ↗</button>
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F451;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">VIP Customer Spotting</div>
+            <div class="dax-feat-desc">Automatically finds your highest-value customers so you know exactly who to protect, reward, and nurture.</div>
+          </div>
         </div>
+
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F4C8;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">7-Day Revenue Forecast</div>
+            <div class="dax-feat-desc">Know what next week looks like before it happens. Plan stock, ads, and team capacity with confidence.</div>
+          </div>
+        </div>
+
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F50D;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">What's Hurting Your Store</div>
+            <div class="dax-feat-desc">Surfaces the exact things dragging down your revenue &mdash; slow products, high returns, drop-off points &mdash; ranked by impact.</div>
+          </div>
+        </div>
+
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F4A1;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">AI Recommendations</div>
+            <div class="dax-feat-desc">Specific next steps tailored to your data. Not generic tips &mdash; real actions like &ldquo;re-engage these 312 customers this week.&rdquo;</div>
+          </div>
+        </div>
+
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F504;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">Period Comparison</div>
+            <div class="dax-feat-desc">Compare this month vs last side-by-side. Instantly see what changed, what grew, and what needs attention.</div>
+          </div>
+        </div>
+
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F916;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">AI Copilot Chat</div>
+            <div class="dax-feat-desc">Ask anything about your store in plain English. &ldquo;Why did sales drop Thursday?&rdquo; &mdash; get a real answer, instantly.</div>
+          </div>
+        </div>
+
+        <div class="dax-feat">
+          <div class="dax-feat-icon">&#x1F4C4;</div>
+          <div class="dax-feat-body">
+            <div class="dax-feat-title">Full PDF Report</div>
+            <div class="dax-feat-desc">Every insight packaged into a clean, shareable report. Send it to your team, partner, or investor in one click.</div>
+          </div>
+        </div>
+
       </div>
+
+      <div class="dax-bottom">
+        <div class="dax-bottom-tags">
+          <span class="dax-btag">&#x2714; Built solo</span>
+          <span class="dax-btag">&#x2714; No team, no funding</span>
+          <span class="dax-btag">&#x2714; Works with any ecommerce CSV</span>
+          <span class="dax-btag dax-btag-amber">&#x26A1; Working towards first paying users</span>
+        </div>
+        <button class="p-btn p-btn-ghost" onclick="window.open('https://github.com/varun539','_blank')" style="white-space:nowrap">GitHub &#x2197;</button>
+      </div>
+
     </div>
 
     <!-- DataPilot -->
@@ -1217,14 +1478,22 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       Available 5–6hrs EU/UK overlap daily. Fully async-capable. Also building DataAgent X — AI analytics for ecommerce brands — on the side.
     </p>
 
+    <!-- contact intro split -->
+    <div class="contact-split-label">
+      <span class="csl-tag csl-job">For job opportunities</span>
+      <span class="csl-tag csl-founder">For DataAgent X</span>
+    </div>
+
     <div class="contact-links">
 
-      <a class="contact-item" href="mailto:vb9225177@gmail.com">
+      <!-- JOB HUNTING -->
+      <a class="contact-item contact-item-job" href="https://mail.google.com/mail/?view=cm&to=vb9225177@gmail.com&su=Remote%20Role%20Opportunity" target="_blank">
         <div class="contact-icon">📧</div>
         <div class="contact-info">
-          <div class="contact-label">Email</div>
+          <div class="contact-label">Personal Email — Jobs &amp; Collaborations</div>
           <div class="contact-val">vb9225177@gmail.com</div>
         </div>
+        <div class="contact-meta-tag csl-job-tag">Job inquiries</div>
         <div class="contact-arrow">→</div>
       </a>
 
@@ -1233,6 +1502,15 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         <div class="contact-info">
           <div class="contact-label">LinkedIn</div>
           <div class="contact-val">linkedin.com/in/varun-dataagentx</div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+
+      <a class="contact-item" href="https://github.com/varun539" target="_blank">
+        <div class="contact-icon">🐙</div>
+        <div class="contact-info">
+          <div class="contact-label">GitHub — All Projects Live Here</div>
+          <div class="contact-val">github.com/varun539</div>
         </div>
         <div class="contact-arrow">→</div>
       </a>
@@ -1246,30 +1524,28 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         <div class="contact-arrow">→</div>
       </a>
 
-      <a class="contact-item" href="https://github.com/varun539" target="_blank">
-        <div class="contact-icon">🐙</div>
-        <div class="contact-info">
-          <div class="contact-label">GitHub</div>
-          <div class="contact-val">github.com/varun539</div>
-        </div>
-        <div class="contact-arrow">→</div>
-      </a>
+      <!-- DATAAGENT X DIVIDER -->
+      <div class="contact-divider">
+        <span>DataAgent X</span>
+      </div>
 
-      <a class="contact-item" href="https://dataagentx.app" target="_blank">
+      <a class="contact-item contact-item-founder" href="https://mail.google.com/mail/?view=cm&to=hello@dataagentx.app&su=Interested%20in%20DataAgent%20X" target="_blank">
         <div class="contact-icon">⚡</div>
         <div class="contact-info">
-          <div class="contact-label">SaaS Product</div>
-          <div class="contact-val">dataagentx.app</div>
+          <div class="contact-label">Product Email — Ecommerce Brands Welcome</div>
+          <div class="contact-val">hello@dataagentx.app</div>
         </div>
+        <div class="contact-meta-tag csl-founder-tag">DataAgent X</div>
         <div class="contact-arrow">→</div>
       </a>
 
-      <a class="contact-item" href="https://varun-datapilot-ai.streamlit.app/" target="_blank">
+      <a class="contact-item contact-item-founder" href="https://dataagentx.app" target="_blank">
         <div class="contact-icon">🚀</div>
         <div class="contact-info">
-          <div class="contact-label">Live Project</div>
-          <div class="contact-val">varun-datapilot-ai.streamlit.app</div>
+          <div class="contact-label">Try DataAgent X Free</div>
+          <div class="contact-val">dataagentx.app</div>
         </div>
+        <div class="contact-meta-tag csl-founder-tag">Live product</div>
         <div class="contact-arrow">→</div>
       </a>
 
