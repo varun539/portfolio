@@ -103,10 +103,10 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
 /* ── HERO ── */
 .hero {
-  min-height: 88vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .hero-cols {
@@ -131,7 +131,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   font-size: 11px;
   color: var(--accent);
   letter-spacing: 1.5px;
-  margin-bottom: 22px;
+  margin-bottom: 14px;
   width: fit-content;
 }
 
@@ -146,11 +146,11 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
 .hero h1 {
-  font-size: clamp(36px, 5.5vw, 72px);
+  font-size: clamp(28px, 3.8vw, 52px);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 18px;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 12px;
 }
 
 .hero-role-line { display: block; }
@@ -172,11 +172,11 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
 .hero-sub {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--muted);
-  max-width: 480px;
-  line-height: 1.75;
-  margin-bottom: 18px;
+  max-width: 460px;
+  line-height: 1.7;
+  margin-bottom: 12px;
 }
 .hero-sub strong { color: var(--text); }
 
@@ -185,135 +185,236 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   display: inline-flex;
   align-items: flex-start;
   gap: 10px;
-  padding: 12px 16px;
+  padding: 10px 14px;
   background: rgba(246,173,85,0.07);
   border: 1px solid rgba(246,173,85,0.22);
   border-radius: 12px;
-  font-size: 13px;
-  max-width: 480px;
-  margin-bottom: 28px;
+  font-size: 12px;
+  max-width: 460px;
+  margin-bottom: 18px;
 }
 
-.founder-inline .fi-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.founder-inline span { line-height: 1.55; color: rgba(246,173,85,0.85); }
+.founder-inline .fi-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.founder-inline span { line-height: 1.5; color: rgba(246,173,85,0.85); }
 .founder-inline strong { color: var(--amber); }
 
 .hero-btns {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 
 .hero-stats {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   flex-wrap: wrap;
-  padding-top: 24px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 
 .stat-item { text-align: left; }
 .stat-num {
   font-family: var(--mono);
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--accent);
 }
 .stat-label {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 2px;
 }
 
-/* ── TERMINAL WIDGET ── */
+/* ── ORBIT CARD ── */
 .hero-right {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.terminal-card {
-  background: #0d1117;
-  border: 1px solid rgba(99,179,237,0.18);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,179,237,0.05);
-}
-
-.terminal-bar {
-  background: #161b22;
-  padding: 12px 16px;
-  display: flex;
   align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid rgba(99,179,237,0.1);
+  gap: 20px;
 }
 
-.t-dot {
-  width: 12px; height: 12px;
-  border-radius: 50%;
+.orbit-wrap {
+  position: relative;
+  width: 340px;
+  height: 340px;
   flex-shrink: 0;
 }
 
-.t-title {
+.orbit-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.orbit-dash {
+  animation: orbit-spin 8s linear infinite;
+  transform-origin: center;
+}
+@keyframes orbit-spin {
+  from { stroke-dashoffset: 816; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* center core */
+.orbit-core {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+  transition: all 0.4s;
+}
+
+.oc-icon {
+  font-size: 36px;
+  filter: drop-shadow(0 0 12px rgba(99,179,237,0.5));
+  transition: all 0.4s;
+}
+
+.oc-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.oc-role {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
-  margin-left: 8px;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+/* orbit nodes */
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  animation: ring-rotate 12s linear infinite;
+}
+
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.orbit-node {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: all 0.25s;
+  animation: counter-rotate 12s linear infinite;
+}
+
+@keyframes counter-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* Position each node on the ring (r=130, center=170) */
+/* top: 170 - 130 = 40, minus half node (36) = 4 */
+.on-ai     { top: 4px;   left: 134px; border-color: rgba(99,179,237,0.3); }
+.on-ml     { top: 134px; left: 264px; border-color: rgba(104,211,145,0.3); }
+.on-founder{ top: 264px; left: 134px; border-color: rgba(246,173,85,0.3); }
+.on-ds     { top: 134px; left: 4px;   border-color: rgba(159,122,234,0.3); }
+
+.orbit-node:hover,
+.orbit-node.active {
+  transform: scale(1.15) rotate(0deg);
+  animation-play-state: paused;
+}
+
+.on-ai:hover,     .on-ai.active     { background: rgba(99,179,237,0.12);  border-color: var(--accent);  box-shadow: 0 0 20px rgba(99,179,237,0.3); }
+.on-ml:hover,     .on-ml.active     { background: rgba(104,211,145,0.12); border-color: var(--green);   box-shadow: 0 0 20px rgba(104,211,145,0.3); }
+.on-founder:hover,.on-founder.active{ background: rgba(246,173,85,0.12);  border-color: var(--amber);   box-shadow: 0 0 20px rgba(246,173,85,0.3); }
+.on-ds:hover,     .on-ds.active     { background: rgba(159,122,234,0.12); border-color: var(--accent2); box-shadow: 0 0 20px rgba(159,122,234,0.3); }
+
+.on-icon  { font-size: 20px; line-height: 1; }
+.on-label { font-size: 8px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-align: center; font-family: var(--mono); }
+
+/* role info card */
+.role-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+  width: 340px;
+  min-height: 100px;
+  transition: border-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rc-hint {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  font-family: var(--mono);
   letter-spacing: 0.5px;
 }
 
-.terminal-body {
-  padding: 20px;
-  font-family: var(--mono);
-  font-size: 12px;
-  line-height: 1.9;
-  min-height: 280px;
-  color: #e2e8f0;
-}
+.rc-content { width: 100%; }
 
-.t-line { display: flex; gap: 8px; }
-.t-prompt { color: var(--green); flex-shrink: 0; }
-.t-cmd { color: var(--accent); }
-.t-out { color: var(--muted); padding-left: 20px; }
-.t-val { color: var(--green); }
-.t-val-amber { color: var(--amber); }
-.t-val-purple { color: var(--accent2); }
-.t-comment { color: #3d4a5a; }
-.t-cursor { display: inline-block; background: var(--accent); width: 8px; height: 14px; vertical-align: middle; animation: blink 1s step-end infinite; margin-left: 4px; }
-
-/* chips below terminal */
-.hero-chips {
+.rc-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 10px;
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.chip {
-  display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 14px;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 600;
-  font-family: var(--mono);
-  letter-spacing: 0.3px;
+  gap: 8px;
 }
 
-.chip-green { background: rgba(104,211,145,0.08); border: 1px solid rgba(104,211,145,0.2); color: var(--green); }
-.chip-blue  { background: rgba(99,179,237,0.08);  border: 1px solid rgba(99,179,237,0.2);  color: var(--accent); }
-.chip-amber { background: rgba(246,173,85,0.08);  border: 1px solid rgba(246,173,85,0.2);  color: var(--amber); }
-.chip-purple{ background: rgba(159,122,234,0.08); border: 1px solid rgba(159,122,234,0.2); color: var(--accent2); }
+.rc-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
 
-.chip-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
+.rc-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.rc-item::before {
+  content: '▸';
   flex-shrink: 0;
-  animation: pulse 2s ease-in-out infinite;
+  font-size: 10px;
+}
+
+.rc-item strong { color: var(--text); }
+
+.rc-cta {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -322,10 +423,10 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   gap: 8px;
   background: var(--accent);
   color: var(--bg);
-  padding: 14px 28px;
-  border-radius: 12px;
+  padding: 11px 22px;
+  border-radius: 10px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -1066,24 +1167,65 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
         </div>
       </div>
 
-      <!-- RIGHT: animated terminal -->
+      <!-- RIGHT: founder dashboard -->
+      <!-- RIGHT: interactive orbit card -->
       <div class="hero-right">
-        <div class="terminal-card">
-          <div class="terminal-bar">
-            <span class="t-dot" style="background:#ff5f57"></span>
-            <span class="t-dot" style="background:#febc2e"></span>
-            <span class="t-dot" style="background:#28c840"></span>
-            <span class="t-title">varun@ml &mdash; model_run.py</span>
+
+        <div class="orbit-wrap">
+
+          <!-- center core -->
+          <div class="orbit-core">
+            <div class="oc-icon" id="oc-icon">&#x1F9E0;</div>
+            <div class="oc-name" id="oc-name">Varun B</div>
+            <div class="oc-role" id="oc-role">Select a role</div>
           </div>
-          <div class="terminal-body" id="terminal-body"></div>
+
+          <!-- orbit ring -->
+          <div class="orbit-ring">
+            <div class="orbit-node on-ai" onclick="selectRole('ai')" title="AI Engineer">
+              <span class="on-icon">&#x26A1;</span>
+              <span class="on-label">AI Engineer</span>
+            </div>
+            <div class="orbit-node on-ml" onclick="selectRole('ml')" title="ML Engineer">
+              <span class="on-icon">&#x1F916;</span>
+              <span class="on-label">ML Engineer</span>
+            </div>
+            <div class="orbit-node on-founder" onclick="selectRole('founder')" title="Founder">
+              <span class="on-icon">&#x1F680;</span>
+              <span class="on-label">Founder</span>
+            </div>
+            <div class="orbit-node on-ds" onclick="selectRole('ds')" title="Data Scientist">
+              <span class="on-icon">&#x1F4CA;</span>
+              <span class="on-label">Data Scientist</span>
+            </div>
+          </div>
+
+          <!-- animated ring SVG -->
+          <svg class="orbit-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="170" cy="170" r="130" fill="none" stroke="rgba(99,179,237,0.08)" stroke-width="1"/>
+            <circle cx="170" cy="170" r="130" fill="none" stroke="url(#ringGrad)" stroke-width="1.5"
+              stroke-dasharray="816" stroke-dashoffset="0" class="orbit-dash"/>
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#63b3ed" stop-opacity="0.8"/>
+                <stop offset="50%" stop-color="#9f7aea" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#63b3ed" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+
         </div>
 
-        <div class="hero-chips">
-          <div class="chip chip-green"><span class="chip-dot" style="background:var(--green)"></span>EU/UK overlap</div>
-          <div class="chip chip-blue"><span class="chip-dot" style="background:var(--accent)"></span>Async-ready</div>
-          <div class="chip chip-amber"><span class="chip-dot" style="background:var(--amber)"></span>Founder</div>
-          <div class="chip chip-purple"><span class="chip-dot" style="background:var(--accent2)"></span>Ships live</div>
+        <!-- info card that changes on click -->
+        <div class="role-card" id="role-card">
+          <div class="rc-hint">&#x1F446; Click a role to see what I bring</div>
+          <div class="rc-content" id="rc-content" style="display:none">
+            <div class="rc-title" id="rc-title"></div>
+            <div class="rc-items" id="rc-items"></div>
+            <div class="rc-cta" id="rc-cta"></div>
+          </div>
         </div>
+
       </div>
 
     </div>
@@ -1603,74 +1745,136 @@ window.addEventListener('DOMContentLoaded', function() {
   var firstNav = document.querySelector('.nav-links a');
   if (firstNav) firstNav.classList.add('active');
 
-  // ── TYPED ROLE ──
-  var roles = ['AI Engineer', 'ML Engineer', 'Data Scientist', 'AI Founder', 'AI Builder'];
-  var ri = 0, ci = 0, deleting = false;
-  var el = document.getElementById('typed-role');
+  // ── ORBIT ROLE SELECTOR ──
+  var roles = {
+    ai: {
+      icon: "⚡", role: "AI Engineer", color: "var(--accent)",
+      title: "⚡ AI Engineering",
+      items: [
+        "<strong>Production LLM apps</strong> — GPT-4o integrated into real products",
+        "<strong>AI Copilot</strong> — conversational analytics over live business data",
+        "<strong>Prompt engineering</strong> — structured outputs, tool calling, agents",
+        "<strong>LangGraph fundamentals</strong> — agentic pipelines & eval concepts"
+      ],
+      cta: "→ View DataAgent X", ctaColor: "rgba(99,179,237,0.12)", ctaBorder: "rgba(99,179,237,0.3)", ctaText: "var(--accent)"
+    },
+    ml: {
+      icon: "🤖", role: "ML Engineer", color: "var(--green)",
+      title: "🤖 Machine Learning",
+      items: [
+        "<strong>R² 0.83</strong> — CatBoost on 10K rows, production deployed",
+        "<strong>AutoML platform</strong> — 5 models, SHAP explainability, PDF reports",
+        "<strong>Churn & forecasting</strong> — classification + time-series pipelines",
+        "<strong>MLOps</strong> — experiment tracking, model registry, leakage detection"
+      ],
+      cta: "→ See DataPilot AI", ctaColor: "rgba(104,211,145,0.12)", ctaBorder: "rgba(104,211,145,0.3)", ctaText: "var(--green)"
+    },
+    founder: {
+      icon: "🚀", role: "Founder", color: "var(--amber)",
+      title: "🚀 Founder of DataAgent X",
+      items: [
+        "<strong>Solo built</strong> — full-stack SaaS, no team, no funding",
+        "<strong>Shopify + Stripe + Supabase</strong> — real production infra",
+        "<strong>AI analytics for ecommerce</strong> — churn, VIP, revenue forecast",
+        "<strong>Working towards first paying users</strong> — B2B outreach active"
+      ],
+      cta: "→ Visit dataagentx.app", ctaColor: "rgba(246,173,85,0.12)", ctaBorder: "rgba(246,173,85,0.3)", ctaText: "var(--amber)"
+    },
+    ds: {
+      icon: "📊", role: "Data Scientist", color: "var(--accent2)",
+      title: "📊 Data Science",
+      items: [
+        "<strong>EDA → Feature Eng → Model</strong> — full cycle, every project",
+        "<strong>SHAP explainability</strong> — business insights, not black boxes",
+        "<strong>Walmart forecasting</strong> — 400K rows, LightGBM + XGBoost ensemble",
+        "<strong>Kaggle active</strong> — handle: varunwolf, competition ML"
+      ],
+      cta: "→ View all projects", ctaColor: "rgba(159,122,234,0.12)", ctaBorder: "rgba(159,122,234,0.3)", ctaText: "var(--accent2)"
+    }
+  };
+
+  var activeRole = null;
+
+  window.selectRole = function(key) {
+    var r = roles[key];
+    if (!r) return;
+    activeRole = key;
+
+    // update core
+    var icon = document.getElementById('oc-icon');
+    var name = document.getElementById('oc-name');
+    var role = document.getElementById('oc-role');
+    if (icon) icon.textContent = r.icon;
+    if (name) name.textContent = 'Varun B';
+    if (role) { role.textContent = r.role; role.style.color = r.color; }
+
+    // highlight active node
+    ['on-ai','on-ml','on-founder','on-ds'].forEach(function(cls) {
+      var nodes = document.getElementsByClassName(cls);
+      for (var n of nodes) n.classList.remove('active');
+    });
+    var map = { ai:'on-ai', ml:'on-ml', founder:'on-founder', ds:'on-ds' };
+    var activeNodes = document.getElementsByClassName(map[key]);
+    for (var n of activeNodes) n.classList.add('active');
+
+    // update card
+    var card = document.getElementById('role-card');
+    var hint = card ? card.querySelector('.rc-hint') : null;
+    var rcContent = document.getElementById('rc-content');
+    var rcTitle = document.getElementById('rc-title');
+    var rcItems = document.getElementById('rc-items');
+    var rcCta = document.getElementById('rc-cta');
+
+    if (hint) hint.style.display = 'none';
+    if (rcContent) rcContent.style.display = 'block';
+    if (card) card.style.borderColor = r.color.replace('var(--','').replace(')','');
+
+    if (rcTitle) rcTitle.innerHTML = r.title;
+    if (rcItems) {
+      rcItems.innerHTML = r.items.map(function(item) {
+        return '<div class="rc-item">' + item + '</div>';
+      }).join('');
+    }
+    if (rcCta) {
+      rcCta.textContent = r.cta;
+      rcCta.style.background = r.ctaColor;
+      rcCta.style.border = '1px solid ' + r.ctaBorder;
+      rcCta.style.color = r.ctaText;
+    }
+    if (card) card.style.borderColor = r.ctaBorder;
+  };
+
+  // auto-cycle roles on load
+  var roleKeys = ['ai', 'ml', 'founder', 'ds'];
+  var rIdx = 0;
+  setTimeout(function() {
+    selectRole(roleKeys[rIdx]);
+    setInterval(function() {
+      rIdx = (rIdx + 1) % roleKeys.length;
+      selectRole(roleKeys[rIdx]);
+    }, 3500);
+  }, 800);
+
+  // typed role still works
+  var typedRoles = ['AI Engineer', 'ML Engineer', 'Data Scientist', 'AI Founder', 'AI Builder'];
+  var tri = 0, tci = 0, tdeleting = false;
+  var tel = document.getElementById('typed-role');
   function typeRole() {
-    if (!el) return;
-    var word = roles[ri];
-    if (!deleting) {
-      el.textContent = word.slice(0, ci + 1);
-      ci++;
-      if (ci === word.length) { deleting = true; setTimeout(typeRole, 1800); return; }
+    if (!tel) return;
+    var word = typedRoles[tri];
+    if (!tdeleting) {
+      tel.textContent = word.slice(0, tci + 1);
+      tci++;
+      if (tci === word.length) { tdeleting = true; setTimeout(typeRole, 1800); return; }
       setTimeout(typeRole, 80);
     } else {
-      el.textContent = word.slice(0, ci - 1);
-      ci--;
-      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; setTimeout(typeRole, 300); return; }
+      tel.textContent = word.slice(0, tci - 1);
+      tci--;
+      if (tci === 0) { tdeleting = false; tri = (tri + 1) % typedRoles.length; setTimeout(typeRole, 300); return; }
       setTimeout(typeRole, 45);
     }
   }
-  setTimeout(typeRole, 600);
+  setTimeout(typeRole, 1200);
 
-  // ── TERMINAL ──
-  var tb = document.getElementById('terminal-body');
-  var lines = [
-    { type: 'cmd',     text: 'python model_run.py --data ecomm.csv' },
-    { type: 'out',     text: '&#x25B8; Loading dataset... 42,891 rows', cls: 't-val' },
-    { type: 'out',     text: '&#x25B8; Running feature engineering...', cls: 't-out' },
-    { type: 'out',     text: '&#x25B8; Training XGBoost, LightGBM, CatBoost...', cls: 't-out' },
-    { type: 'result',  text: '  CatBoost  R&#178; = <b style="color:var(--green)">0.8312</b>  &#10003; best model' },
-    { type: 'result',  text: '  LightGBM  R&#178; = 0.8190' },
-    { type: 'result',  text: '  XGBoost   R&#178; = 0.8051' },
-    { type: 'gap' },
-    { type: 'cmd',     text: 'python explain.py --shap' },
-    { type: 'out',     text: '&#x25B8; Generating SHAP explanations...', cls: 't-out' },
-    { type: 'result',  text: '  Top feature: <b style="color:var(--amber)">avg_order_value</b>  (+0.31)' },
-    { type: 'result',  text: '  Churn risk:  <b style="color:#fc8181)">HIGH</b> for 2,104 users' },
-    { type: 'gap' },
-    { type: 'cmd',     text: 'python copilot.py --ask "Why did revenue drop?"' },
-    { type: 'ai',      text: '&#x25BA; Revenue fell 12% — cart abandonment up in mobile (68%), top SKU out of stock since Tue.' },
-    { type: 'prompt' }
-  ];
-
-  var li = 0;
-  function addLine() {
-    if (li >= lines.length) return;
-    var l = lines[li++];
-    var div = document.createElement('div');
-    div.className = 't-line';
-
-    if (l.type === 'cmd') {
-      div.innerHTML = '<span class="t-prompt">&#x276F;</span><span class="t-cmd">' + l.text + '</span>';
-    } else if (l.type === 'out' || l.type === 'result') {
-      div.innerHTML = '<span class="' + (l.cls || 't-out') + '">' + l.text + '</span>';
-    } else if (l.type === 'ai') {
-      div.innerHTML = '<span class="t-val-purple">' + l.text + '</span>';
-    } else if (l.type === 'gap') {
-      div.innerHTML = '&nbsp;';
-    } else if (l.type === 'prompt') {
-      div.innerHTML = '<span class="t-prompt">&#x276F;</span><span class="t-cursor"></span>';
-    }
-
-    tb.appendChild(div);
-    tb.scrollTop = tb.scrollHeight;
-    var delay = l.type === 'cmd' ? 600 : l.type === 'gap' ? 200 : 180;
-    setTimeout(addLine, delay);
-  }
-  setTimeout(addLine, 800);
 });
 </script>
-</body>
-</html>
