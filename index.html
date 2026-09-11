@@ -229,193 +229,250 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 }
 
 /* ── ORBIT CARD ── */
-.hero-right {
+.hero-right { display: flex; align-items: stretch; }
+
+.orbit-card {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(8,12,24,0.95);
+  border: 1px solid rgba(99,179,237,0.14);
+  box-shadow: 0 0 0 1px rgba(99,179,237,0.04), 0 32px 80px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
 }
 
-.orbit-wrap {
+.orbit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--amber));
+  z-index: 3;
+}
+
+#orb-canvas {
+  position: absolute;
+  inset: 0; width: 100%; height: 100%;
+  z-index: 0;
+}
+
+/* orbit overlay — contains center + nodes + svg ring */
+.orb-overlay {
   position: relative;
-  width: 340px;
-  height: 340px;
+  z-index: 1;
+  width: 100%;
+  padding-top: 100%; /* square */
+  max-height: 380px;
   flex-shrink: 0;
 }
 
-.orbit-svg {
+/* fix: make orb-overlay not use padding-top trick on larger screens */
+@media(min-width:900px) {
+  .orb-overlay { padding-top: 0; height: 340px; }
+}
+
+.orb-ring-svg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   pointer-events: none;
 }
 
-.orbit-dash {
-  animation: orbit-spin 8s linear infinite;
-  transform-origin: center;
+.orb-ring-dash {
+  transform-origin: 240px 240px;
+  animation: orb-spin 10s linear infinite;
 }
-@keyframes orbit-spin {
-  from { stroke-dashoffset: 816; }
-  to   { stroke-dashoffset: 0; }
-}
+@keyframes orb-spin { from { stroke-dashoffset: 1005; } to { stroke-dashoffset: 0; } }
 
-/* center core */
-.orbit-core {
+/* center node */
+.orb-center {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
   z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.orb-center-ring {
+  position: absolute;
+  width: 108px; height: 108px;
+  border-radius: 50%;
+  border: 1px solid rgba(99,179,237,0.2);
+  animation: orb-spin 6s linear infinite reverse;
+}
+.orb-center-ring::before {
+  content: '';
+  position: absolute;
+  inset: -6px; border-radius: 50%;
+  border: 1px dashed rgba(99,179,237,0.08);
+}
+
+.orb-center-inner {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(99,179,237,0.15), rgba(8,12,24,0.9));
+  border: 1.5px solid rgba(99,179,237,0.25);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px;
+  box-shadow: 0 0 30px rgba(99,179,237,0.15), inset 0 0 20px rgba(99,179,237,0.05);
   transition: all 0.4s;
 }
 
-.oc-icon {
-  font-size: 36px;
-  filter: drop-shadow(0 0 12px rgba(99,179,237,0.5));
-  transition: all 0.4s;
+.orb-center-icon {
+  font-size: 26px;
+  transition: all 0.3s;
+  filter: drop-shadow(0 0 8px rgba(99,179,237,0.5));
 }
 
-.oc-name {
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.3px;
+.orb-center-name {
+  font-size: 10px; font-weight: 800;
+  color: var(--text); letter-spacing: -0.2px;
+  font-family: var(--sans);
 }
 
-.oc-role {
+.orb-center-role {
   font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 1px;
+  font-size: 8px; color: var(--muted);
+  letter-spacing: 0.5px;
   transition: color 0.3s;
 }
 
 /* orbit nodes */
-.orbit-ring {
+.orb-node {
   position: absolute;
-  inset: 0;
-  animation: ring-rotate 12s linear infinite;
+  z-index: 2;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
 }
+.orb-node:hover { transform: translate(-50%, -50%) scale(1.12); }
+.orb-node.active { transform: translate(-50%, -50%) scale(1.15); }
 
-@keyframes ring-rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-.orbit-node {
-  position: absolute;
-  width: 72px;
-  height: 72px;
+.orb-node-inner {
+  width: 68px; height: 68px;
   border-radius: 50%;
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  cursor: pointer;
+  background: rgba(13,17,23,0.92);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 3px;
+  border: 1.5px solid rgba(99,179,237,0.2);
   transition: all 0.25s;
-  animation: counter-rotate 12s linear infinite;
+  backdrop-filter: blur(8px);
 }
 
-@keyframes counter-rotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(-360deg); }
+.on-blue   { border-color: rgba(99,179,237,0.3); }
+.on-green  { border-color: rgba(104,211,145,0.3); }
+.on-amber  { border-color: rgba(246,173,85,0.3); }
+.on-purple { border-color: rgba(159,122,234,0.3); }
+
+.orb-node:hover .on-blue,   .orb-node.active .on-blue   { background: rgba(99,179,237,0.12);  border-color: var(--accent);  box-shadow: 0 0 24px rgba(99,179,237,0.35); }
+.orb-node:hover .on-green,  .orb-node.active .on-green  { background: rgba(104,211,145,0.12); border-color: var(--green);   box-shadow: 0 0 24px rgba(104,211,145,0.35); }
+.orb-node:hover .on-amber,  .orb-node.active .on-amber  { background: rgba(246,173,85,0.12);  border-color: var(--amber);   box-shadow: 0 0 24px rgba(246,173,85,0.35); }
+.orb-node:hover .on-purple, .orb-node.active .on-purple { background: rgba(159,122,234,0.12); border-color: var(--accent2); box-shadow: 0 0 24px rgba(159,122,234,0.35); }
+
+.orb-node-icon  { font-size: 22px; line-height: 1; }
+.orb-node-label { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--muted); letter-spacing: 0.3px; }
+.orb-node.active .orb-node-label { color: var(--text); }
+
+/* info panel */
+.orb-info {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(99,179,237,0.07);
+  min-height: 72px;
+  display: flex; align-items: center;
+  z-index: 1; position: relative;
+  flex: 1;
 }
 
-/* Position each node on the ring (r=130, center=170) */
-/* top: 170 - 130 = 40, minus half node (36) = 4 */
-.on-ai     { top: 4px;   left: 134px; border-color: rgba(99,179,237,0.3); }
-.on-ml     { top: 134px; left: 264px; border-color: rgba(104,211,145,0.3); }
-.on-founder{ top: 264px; left: 134px; border-color: rgba(246,173,85,0.3); }
-.on-ds     { top: 134px; left: 4px;   border-color: rgba(159,122,234,0.3); }
+.orb-info-hint { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 100%; text-align: center; }
 
-.orbit-node:hover,
-.orbit-node.active {
-  transform: scale(1.15) rotate(0deg);
-  animation-play-state: paused;
+.orb-info-content { width: 100%; }
+
+.orb-info-title {
+  font-size: 12px; font-weight: 700; color: var(--text);
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
 }
 
-.on-ai:hover,     .on-ai.active     { background: rgba(99,179,237,0.12);  border-color: var(--accent);  box-shadow: 0 0 20px rgba(99,179,237,0.3); }
-.on-ml:hover,     .on-ml.active     { background: rgba(104,211,145,0.12); border-color: var(--green);   box-shadow: 0 0 20px rgba(104,211,145,0.3); }
-.on-founder:hover,.on-founder.active{ background: rgba(246,173,85,0.12);  border-color: var(--amber);   box-shadow: 0 0 20px rgba(246,173,85,0.3); }
-.on-ds:hover,     .on-ds.active     { background: rgba(159,122,234,0.12); border-color: var(--accent2); box-shadow: 0 0 20px rgba(159,122,234,0.3); }
+.orb-info-pills { display: flex; flex-wrap: wrap; gap: 5px; }
 
-.on-icon  { font-size: 20px; line-height: 1; }
-.on-label { font-size: 8px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-align: center; font-family: var(--mono); }
+.orb-pill {
+  font-family: var(--mono); font-size: 10px;
+  padding: 3px 9px; border-radius: 100px;
+}
+.op-blue   { background: rgba(99,179,237,0.1);  border: 1px solid rgba(99,179,237,0.25);  color: var(--accent); }
+.op-green  { background: rgba(104,211,145,0.1); border: 1px solid rgba(104,211,145,0.25); color: var(--green); }
+.op-amber  { background: rgba(246,173,85,0.1);  border: 1px solid rgba(246,173,85,0.25);  color: var(--amber); }
+.op-purple { background: rgba(159,122,234,0.1); border: 1px solid rgba(159,122,234,0.25); color: var(--accent2); }
 
-/* role info card */
-.role-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px 20px;
-  width: 340px;
-  min-height: 100px;
-  transition: border-color 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* bottom strip */
+.orb-bottom {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(99,179,237,0.07);
+  display: flex; align-items: center; gap: 8px;
+  z-index: 1; position: relative;
 }
 
-.rc-hint {
-  font-size: 13px;
-  color: var(--muted);
-  text-align: center;
-  font-family: var(--mono);
-  letter-spacing: 0.5px;
+.orb-btn-amber {
+  flex: 1; text-align: center; padding: 9px;
+  background: linear-gradient(135deg, var(--amber), #d97706);
+  color: #0a0a0a; border-radius: 9px;
+  font-weight: 800; font-size: 12px; text-decoration: none;
+  transition: all 0.2s;
+}
+.orb-btn-amber:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(246,173,85,0.3); }
+
+.orb-btn-ghost {
+  padding: 9px 14px; border-radius: 9px;
+  border: 1px solid var(--border); color: var(--muted);
+  font-size: 12px; font-weight: 600; text-decoration: none;
+  transition: all 0.2s;
+}
+.orb-btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.orb-status {
+  display: flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 9px; color: var(--green);
+  white-space: nowrap;
+}
+.orb-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
 }
 
-.rc-content { width: 100%; }
-
-.rc-title {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* ── SCROLL ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-.rc-items {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
+.fade-up:nth-child(2) { transition-delay: 0.08s; }
+.fade-up:nth-child(3) { transition-delay: 0.16s; }
+.fade-up:nth-child(4) { transition-delay: 0.24s; }
+.fade-up:nth-child(5) { transition-delay: 0.32s; }
+.fade-up:nth-child(6) { transition-delay: 0.40s; }
+.fade-up:nth-child(7) { transition-delay: 0.48s; }
+.fade-up:nth-child(8) { transition-delay: 0.56s; }
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.4,0.64,1);
 }
+.scale-in.visible { opacity: 1; transform: scale(1); }
 
-.rc-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--muted);
-}
+/* ── SKILL CARD HOVER GLOW ── */
+.skill-card:hover { box-shadow: 0 0 24px rgba(99,179,237,0.1); }
 
-.rc-item::before {
-  content: '▸';
-  flex-shrink: 0;
-  font-size: 10px;
-}
+/* ── PROJECT CARD GLOW ── */
+.project-card:hover { box-shadow: 0 8px 40px rgba(99,179,237,0.08); }
 
-.rc-item strong { color: var(--text); }
-
-.rc-cta {
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  display: inline-block;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-}
+/* ── THINK CARD COUNTER GLOW ── */
+.think-card:hover .think-num { color: rgba(99,179,237,0.4); }
 
 .btn-primary {
   display: inline-flex;
@@ -1149,83 +1206,101 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
         <div class="hero-stats">
           <div class="stat-item">
-            <div class="stat-num">0.83</div>
-            <div class="stat-label">R&sup2; Score</div>
-          </div>
-          <div class="stat-item">
             <div class="stat-num">4+</div>
             <div class="stat-label">Live Projects</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">5</div>
-            <div class="stat-label">ML Models</div>
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Yrs Coding</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">11</div>
-            <div class="stat-label">Modules</div>
+            <div class="stat-num">EU/UK</div>
+            <div class="stat-label">Overlap</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Solo</div>
+            <div class="stat-label">Founder</div>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT: founder dashboard -->
-      <!-- RIGHT: interactive orbit card -->
+      <!-- RIGHT: orbit card -->
       <div class="hero-right">
+        <div class="orbit-card">
 
-        <div class="orbit-wrap">
+          <canvas id="orb-canvas"></canvas>
 
-          <!-- center core -->
-          <div class="orbit-core">
-            <div class="oc-icon" id="oc-icon">&#x1F9E0;</div>
-            <div class="oc-name" id="oc-name">Varun B</div>
-            <div class="oc-role" id="oc-role">Select a role</div>
+          <div class="orb-overlay">
+
+            <!-- center -->
+            <div class="orb-center" id="orb-center">
+              <div class="orb-center-ring"></div>
+              <div class="orb-center-inner">
+                <div class="orb-center-icon" id="orb-icon">&#x1F9E0;</div>
+                <div class="orb-center-name">Varun B</div>
+                <div class="orb-center-role" id="orb-role">Click a node</div>
+              </div>
+            </div>
+
+            <!-- orbit nodes — positioned via JS -->
+            <div class="orb-node" id="on-ai" onclick="orbSelect('ai')">
+              <div class="orb-node-inner on-blue">
+                <span class="orb-node-icon">&#x26A1;</span>
+                <span class="orb-node-label">AI Eng.</span>
+              </div>
+            </div>
+            <div class="orb-node" id="on-ml" onclick="orbSelect('ml')">
+              <div class="orb-node-inner on-green">
+                <span class="orb-node-icon">&#x1F916;</span>
+                <span class="orb-node-label">ML Eng.</span>
+              </div>
+            </div>
+            <div class="orb-node" id="on-founder" onclick="orbSelect('founder')">
+              <div class="orb-node-inner on-amber">
+                <span class="orb-node-icon">&#x1F680;</span>
+                <span class="orb-node-label">Founder</span>
+              </div>
+            </div>
+            <div class="orb-node" id="on-ds" onclick="orbSelect('ds')">
+              <div class="orb-node-inner on-purple">
+                <span class="orb-node-icon">&#x1F4CA;</span>
+                <span class="orb-node-label">Data Sci.</span>
+              </div>
+            </div>
+
+            <!-- SVG ring drawn over canvas -->
+            <svg class="orb-ring-svg" id="orb-ring-svg" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="240" cy="240" r="160" fill="none" stroke="rgba(99,179,237,0.1)" stroke-width="1"/>
+              <circle cx="240" cy="240" r="160" fill="none" stroke="url(#og)" stroke-width="1.5"
+                stroke-dasharray="1005" stroke-dashoffset="0" class="orb-ring-dash"/>
+              <defs>
+                <linearGradient id="og" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#63b3ed" stop-opacity="0.9"/>
+                  <stop offset="40%" stop-color="#9f7aea" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#63b3ed" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
           </div>
 
-          <!-- orbit ring -->
-          <div class="orbit-ring">
-            <div class="orbit-node on-ai" onclick="selectRole('ai')" title="AI Engineer">
-              <span class="on-icon">&#x26A1;</span>
-              <span class="on-label">AI Engineer</span>
-            </div>
-            <div class="orbit-node on-ml" onclick="selectRole('ml')" title="ML Engineer">
-              <span class="on-icon">&#x1F916;</span>
-              <span class="on-label">ML Engineer</span>
-            </div>
-            <div class="orbit-node on-founder" onclick="selectRole('founder')" title="Founder">
-              <span class="on-icon">&#x1F680;</span>
-              <span class="on-label">Founder</span>
-            </div>
-            <div class="orbit-node on-ds" onclick="selectRole('ds')" title="Data Scientist">
-              <span class="on-icon">&#x1F4CA;</span>
-              <span class="on-label">Data Scientist</span>
+          <!-- info panel below orbit -->
+          <div class="orb-info" id="orb-info">
+            <div class="orb-info-hint">&#x1F446; tap a role</div>
+            <div class="orb-info-content" id="orb-info-content" style="display:none">
+              <div class="orb-info-title" id="orb-info-title"></div>
+              <div class="orb-info-pills" id="orb-info-pills"></div>
             </div>
           </div>
 
-          <!-- animated ring SVG -->
-          <svg class="orbit-svg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="170" cy="170" r="130" fill="none" stroke="rgba(99,179,237,0.08)" stroke-width="1"/>
-            <circle cx="170" cy="170" r="130" fill="none" stroke="url(#ringGrad)" stroke-width="1.5"
-              stroke-dasharray="816" stroke-dashoffset="0" class="orbit-dash"/>
-            <defs>
-              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#63b3ed" stop-opacity="0.8"/>
-                <stop offset="50%" stop-color="#9f7aea" stop-opacity="0.4"/>
-                <stop offset="100%" stop-color="#63b3ed" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-          </svg>
+          <!-- bottom strip -->
+          <div class="orb-bottom">
+            <a class="orb-btn-amber" href="https://dataagentx.app" target="_blank">&#x26A1; DataAgent X</a>
+            <a class="orb-btn-ghost" href="https://github.com/varun539" target="_blank">GitHub &#x2197;</a>
+            <div class="orb-status"><span class="orb-status-dot"></span>Open to Remote</div>
+          </div>
 
         </div>
-
-        <!-- info card that changes on click -->
-        <div class="role-card" id="role-card">
-          <div class="rc-hint">&#x1F446; Click a role to see what I bring</div>
-          <div class="rc-content" id="rc-content" style="display:none">
-            <div class="rc-title" id="rc-title"></div>
-            <div class="rc-items" id="rc-items"></div>
-            <div class="rc-cta" id="rc-cta"></div>
-          </div>
-        </div>
-
       </div>
 
     </div>
@@ -1239,7 +1314,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
   <div class="skills-grid">
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">🐍</div>
       <h3>Languages & Data</h3>
       <div class="skill-tags">
@@ -1251,7 +1326,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       </div>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">🤖</div>
       <h3>Machine Learning</h3>
       <div class="skill-tags">
@@ -1265,7 +1340,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       </div>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">🧠</div>
       <h3>Explainable AI</h3>
       <div class="skill-tags">
@@ -1276,7 +1351,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       </div>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">⚡</div>
       <h3>MLOps & Deployment</h3>
       <div class="skill-tags">
@@ -1288,7 +1363,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       </div>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">🔮</div>
       <h3>AI Engineering</h3>
       <div class="skill-tags">
@@ -1303,7 +1378,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       </div>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">⚙️</div>
       <h3>Backend & Cloud</h3>
       <div class="skill-tags">
@@ -1319,7 +1394,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       </div>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">🏗️</div>
       <h3>Founder Stack</h3>
       <div class="skill-tags">
@@ -1332,7 +1407,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
       </div>
     </div>
 
-    <div class="skill-card">
+    <div class="skill-card fade-up">
       <div class="skill-icon">🛠️</div>
       <h3>Tools</h3>
       <div class="skill-tags">
@@ -1355,7 +1430,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
   <div class="projects-grid">
 
     <!-- DataAgent X — Featured Founder Card -->
-    <div class="dax-card">
+    <div class="dax-card scale-in">
 
       <div class="dax-top">
         <div class="dax-top-left">
@@ -1460,7 +1535,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
     </div>
 
     <!-- DataPilot -->
-    <div class="project-card">
+    <div class="project-card fade-up">
       <div class="project-header">
         <div class="project-emoji">🚀</div>
         <span class="project-status">LIVE</span>
@@ -1495,7 +1570,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
     </div>
 
     <!-- Walmart -->
-    <div class="project-card">
+    <div class="project-card fade-up">
       <div class="project-header">
         <div class="project-emoji">🛒</div>
         <span class="project-status">LIVE</span>
@@ -1528,7 +1603,7 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
     </div>
 
     <!-- Churn -->
-    <div class="project-card">
+    <div class="project-card fade-up">
       <div class="project-header">
         <div class="project-emoji">📉</div>
         <span class="project-status">LIVE</span>
@@ -1570,37 +1645,37 @@ main { max-width: 1100px; margin: auto; padding: 120px 5% 80px; }
 
   <div class="thinking-grid">
 
-    <div class="think-card">
+    <div class="think-card fade-up">
       <div class="think-num">01</div>
       <h3>Business First</h3>
       <p>Every model exists to solve a business problem. I start with "what decision does this enable?" before touching any code.</p>
     </div>
 
-    <div class="think-card">
+    <div class="think-card fade-up">
       <div class="think-num">02</div>
       <h3>Data Before Models</h3>
       <p>Garbage in, garbage out. I spend 60% of time on EDA, feature engineering, and leakage detection before training anything.</p>
     </div>
 
-    <div class="think-card">
+    <div class="think-card fade-up">
       <div class="think-num">03</div>
       <h3>Explainability is Non-Negotiable</h3>
       <p>A model no one understands is a model no one uses. SHAP + plain English explanations are built into everything I build.</p>
     </div>
 
-    <div class="think-card">
+    <div class="think-card fade-up">
       <div class="think-num">04</div>
       <h3>Ship It Live</h3>
       <p>Every project I build is deployed and accessible. A model sitting in a notebook has zero real-world value.</p>
     </div>
 
-    <div class="think-card">
+    <div class="think-card fade-up">
       <div class="think-num">05</div>
       <h3>Modular by Default</h3>
       <p>Each file has one job. My DataPilot has 11 modular files — testable, maintainable, and production-ready from day one.</p>
     </div>
 
-    <div class="think-card">
+    <div class="think-card fade-up">
       <div class="think-num">06</div>
       <h3>Founder Mindset</h3>
       <p>Running DataAgent X solo taught me that ownership beats everything. I don't wait for specs — I figure out what's needed and ship it.</p>
@@ -1745,117 +1820,166 @@ window.addEventListener('DOMContentLoaded', function() {
   var firstNav = document.querySelector('.nav-links a');
   if (firstNav) firstNav.classList.add('active');
 
-  // ── ORBIT ROLE SELECTOR ──
-  var roles = {
-    ai: {
-      icon: "⚡", role: "AI Engineer", color: "var(--accent)",
-      title: "⚡ AI Engineering",
-      items: [
-        "<strong>Production LLM apps</strong> — GPT-4o integrated into real products",
-        "<strong>AI Copilot</strong> — conversational analytics over live business data",
-        "<strong>Prompt engineering</strong> — structured outputs, tool calling, agents",
-        "<strong>LangGraph fundamentals</strong> — agentic pipelines & eval concepts"
-      ],
-      cta: "→ View DataAgent X", ctaColor: "rgba(99,179,237,0.12)", ctaBorder: "rgba(99,179,237,0.3)", ctaText: "var(--accent)"
-    },
-    ml: {
-      icon: "🤖", role: "ML Engineer", color: "var(--green)",
-      title: "🤖 Machine Learning",
-      items: [
-        "<strong>R² 0.83</strong> — CatBoost on 10K rows, production deployed",
-        "<strong>AutoML platform</strong> — 5 models, SHAP explainability, PDF reports",
-        "<strong>Churn & forecasting</strong> — classification + time-series pipelines",
-        "<strong>MLOps</strong> — experiment tracking, model registry, leakage detection"
-      ],
-      cta: "→ See DataPilot AI", ctaColor: "rgba(104,211,145,0.12)", ctaBorder: "rgba(104,211,145,0.3)", ctaText: "var(--green)"
-    },
-    founder: {
-      icon: "🚀", role: "Founder", color: "var(--amber)",
-      title: "🚀 Founder of DataAgent X",
-      items: [
-        "<strong>Solo built</strong> — full-stack SaaS, no team, no funding",
-        "<strong>Shopify + Stripe + Supabase</strong> — real production infra",
-        "<strong>AI analytics for ecommerce</strong> — churn, VIP, revenue forecast",
-        "<strong>Working towards first paying users</strong> — B2B outreach active"
-      ],
-      cta: "→ Visit dataagentx.app", ctaColor: "rgba(246,173,85,0.12)", ctaBorder: "rgba(246,173,85,0.3)", ctaText: "var(--amber)"
-    },
-    ds: {
-      icon: "📊", role: "Data Scientist", color: "var(--accent2)",
-      title: "📊 Data Science",
-      items: [
-        "<strong>EDA → Feature Eng → Model</strong> — full cycle, every project",
-        "<strong>SHAP explainability</strong> — business insights, not black boxes",
-        "<strong>Walmart forecasting</strong> — 400K rows, LightGBM + XGBoost ensemble",
-        "<strong>Kaggle active</strong> — handle: varunwolf, competition ML"
-      ],
-      cta: "→ View all projects", ctaColor: "rgba(159,122,234,0.12)", ctaBorder: "rgba(159,122,234,0.3)", ctaText: "var(--accent2)"
+  // ── ORBIT ANIMATION ──
+  (function() {
+    var canvas = document.getElementById('orb-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+
+    function resize() {
+      var p = canvas.parentElement;
+      canvas.width = p.offsetWidth;
+      canvas.height = p.offsetHeight;
     }
-  };
+    resize();
+    window.addEventListener('resize', resize);
 
-  var activeRole = null;
-
-  window.selectRole = function(key) {
-    var r = roles[key];
-    if (!r) return;
-    activeRole = key;
-
-    // update core
-    var icon = document.getElementById('oc-icon');
-    var name = document.getElementById('oc-name');
-    var role = document.getElementById('oc-role');
-    if (icon) icon.textContent = r.icon;
-    if (name) name.textContent = 'Varun B';
-    if (role) { role.textContent = r.role; role.style.color = r.color; }
-
-    // highlight active node
-    ['on-ai','on-ml','on-founder','on-ds'].forEach(function(cls) {
-      var nodes = document.getElementsByClassName(cls);
-      for (var n of nodes) n.classList.remove('active');
-    });
-    var map = { ai:'on-ai', ml:'on-ml', founder:'on-founder', ds:'on-ds' };
-    var activeNodes = document.getElementsByClassName(map[key]);
-    for (var n of activeNodes) n.classList.add('active');
-
-    // update card
-    var card = document.getElementById('role-card');
-    var hint = card ? card.querySelector('.rc-hint') : null;
-    var rcContent = document.getElementById('rc-content');
-    var rcTitle = document.getElementById('rc-title');
-    var rcItems = document.getElementById('rc-items');
-    var rcCta = document.getElementById('rc-cta');
-
-    if (hint) hint.style.display = 'none';
-    if (rcContent) rcContent.style.display = 'block';
-    if (card) card.style.borderColor = r.color.replace('var(--','').replace(')','');
-
-    if (rcTitle) rcTitle.innerHTML = r.title;
-    if (rcItems) {
-      rcItems.innerHTML = r.items.map(function(item) {
-        return '<div class="rc-item">' + item + '</div>';
-      }).join('');
+    // particles
+    var pts = [];
+    for (var i = 0; i < 45; i++) {
+      var colors = ['rgba(99,179,237,', 'rgba(159,122,234,', 'rgba(104,211,145,', 'rgba(246,173,85,'];
+      pts.push({
+        x: Math.random(), y: Math.random(),
+        vx: (Math.random()-.5)*0.00025, vy: (Math.random()-.5)*0.00025,
+        r: Math.random()*1.6+0.4,
+        c: colors[i%4], a: Math.random()*0.4+0.15
+      });
     }
-    if (rcCta) {
-      rcCta.textContent = r.cta;
-      rcCta.style.background = r.ctaColor;
-      rcCta.style.border = '1px solid ' + r.ctaBorder;
-      rcCta.style.color = r.ctaText;
+
+    function drawBg() {
+      var W = canvas.width, H = canvas.height;
+      ctx.clearRect(0,0,W,H);
+      pts.forEach(function(p) {
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0) p.x=1; if(p.x>1) p.x=0;
+        if(p.y<0) p.y=1; if(p.y>1) p.y=0;
+        ctx.beginPath();
+        ctx.arc(p.x*W, p.y*H, p.r, 0, Math.PI*2);
+        ctx.fillStyle = p.c + p.a + ')';
+        ctx.fill();
+      });
+      for(var i=0;i<pts.length;i++) {
+        for(var j=i+1;j<pts.length;j++) {
+          var dx=(pts[i].x-pts[j].x)*W, dy=(pts[i].y-pts[j].y)*H;
+          var d=Math.sqrt(dx*dx+dy*dy);
+          if(d<100) {
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x*W, pts[i].y*H);
+            ctx.lineTo(pts[j].x*W, pts[j].y*H);
+            ctx.strokeStyle='rgba(99,179,237,'+(1-d/100)*0.12+')';
+            ctx.lineWidth=0.5; ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawBg);
     }
-    if (card) card.style.borderColor = r.ctaBorder;
-  };
+    drawBg();
+  })();
 
-  // auto-cycle roles on load
-  var roleKeys = ['ai', 'ml', 'founder', 'ds'];
-  var rIdx = 0;
-  setTimeout(function() {
-    selectRole(roleKeys[rIdx]);
-    setInterval(function() {
-      rIdx = (rIdx + 1) % roleKeys.length;
-      selectRole(roleKeys[rIdx]);
-    }, 3500);
-  }, 800);
+  // ── ORBIT NODES POSITIONING & ROTATION ──
+  (function() {
+    var nodeIds = ['on-ai','on-ml','on-founder','on-ds'];
+    var angles  = [270, 0, 90, 180]; // degrees: top, right, bottom, left
+    var speed   = 0.25; // deg/sec
+    var paused  = false;
+    var current = angles.slice();
+    var lastT   = null;
+    var activeKey = null;
 
-  // typed role still works
+    function positionNodes() {
+      var wrap = document.querySelector('.orb-overlay');
+      if (!wrap) return;
+      var rect = wrap.getBoundingClientRect();
+      var cx = rect.width / 2, cy = rect.height / 2;
+      var R  = Math.min(cx, cy) * 0.62;
+
+      nodeIds.forEach(function(id, i) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var rad = current[i] * Math.PI / 180;
+        var x = cx + R * Math.cos(rad);
+        var y = cy + R * Math.sin(rad);
+        el.style.left = x + 'px';
+        el.style.top  = y + 'px';
+      });
+    }
+
+    function tick(ts) {
+      if (lastT !== null && !paused) {
+        var dt = (ts - lastT) / 1000;
+        for (var i = 0; i < current.length; i++) {
+          current[i] = (current[i] + speed * dt * 60 / 60) % 360;
+        }
+      }
+      lastT = ts;
+      positionNodes();
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener('resize', function() { positionNodes(); });
+    setTimeout(function() { positionNodes(); requestAnimationFrame(tick); }, 100);
+
+    // role data
+    var roleData = {
+      ai:      { icon:'⚡', role:'AI Engineer',    color:'var(--accent)',  pills:[['GPT-4o','op-blue'],['LangGraph','op-blue'],['Prompt Eng.','op-blue'],['LLM Tools','op-blue'],['FastAPI','op-blue']], title:'⚡ AI Engineering' },
+      ml:      { icon:'🤖', role:'ML Engineer',    color:'var(--green)',   pills:[['XGBoost','op-green'],['CatBoost','op-green'],['SHAP','op-green'],['R² 0.83','op-green'],['MLOps','op-green']], title:'🤖 Machine Learning' },
+      founder: { icon:'🚀', role:'Founder',        color:'var(--amber)',   pills:[['DataAgent X','op-amber'],['SaaS','op-amber'],['Stripe','op-amber'],['Supabase','op-amber'],['Solo Built','op-amber']], title:'🚀 Founder · DataAgent X' },
+      ds:      { icon:'📊', role:'Data Scientist', color:'var(--accent2)', pills:[['EDA','op-purple'],['Feature Eng.','op-purple'],['Forecasting','op-purple'],['Kaggle','op-purple'],['Classification','op-purple']], title:'📊 Data Scientist' }
+    };
+    var roleKeys = ['ai','ml','founder','ds'];
+
+    window.orbSelect = function(key) {
+      activeKey = key;
+      var r = roleData[key];
+      paused = true;
+      setTimeout(function() { paused = false; }, 2200);
+
+      // update center
+      var icon = document.getElementById('orb-icon');
+      var role = document.getElementById('orb-role');
+      if (icon) { icon.textContent = r.icon; icon.style.filter = 'drop-shadow(0 0 12px ' + r.color + ')'; }
+      if (role) { role.textContent = r.role; role.style.color = r.color; }
+
+      // update center border color
+      var ci = document.querySelector('.orb-center-inner');
+      if (ci) ci.style.borderColor = r.color.replace('var(--','').replace(')','');
+
+      // highlight active node
+      nodeIds.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.remove('active');
+      });
+      var map = { ai:'on-ai', ml:'on-ml', founder:'on-founder', ds:'on-ds' };
+      var active = document.getElementById(map[key]);
+      if (active) active.classList.add('active');
+
+      // update info panel
+      var hint    = document.querySelector('.orb-info-hint');
+      var info    = document.getElementById('orb-info-content');
+      var title   = document.getElementById('orb-info-title');
+      var pillBox = document.getElementById('orb-info-pills');
+      if (hint)    hint.style.display    = 'none';
+      if (info)    info.style.display    = 'block';
+      if (title)   title.textContent     = r.title;
+      if (pillBox) {
+        pillBox.innerHTML = r.pills.map(function(p) {
+          return '<span class="orb-pill ' + p[1] + '">' + p[0] + '</span>';
+        }).join('');
+      }
+    };
+
+    // auto-cycle
+    var ci = 0;
+    setTimeout(function() {
+      orbSelect(roleKeys[ci]);
+      setInterval(function() {
+        ci = (ci+1) % roleKeys.length;
+        orbSelect(roleKeys[ci]);
+      }, 3000);
+    }, 600);
+  })();
+
+    // ── TYPED ROLE ──
   var typedRoles = ['AI Engineer', 'ML Engineer', 'Data Scientist', 'AI Founder', 'AI Builder'];
   var tri = 0, tci = 0, tdeleting = false;
   var tel = document.getElementById('typed-role');
@@ -1863,18 +1987,42 @@ window.addEventListener('DOMContentLoaded', function() {
     if (!tel) return;
     var word = typedRoles[tri];
     if (!tdeleting) {
-      tel.textContent = word.slice(0, tci + 1);
-      tci++;
+      tel.textContent = word.slice(0, tci + 1); tci++;
       if (tci === word.length) { tdeleting = true; setTimeout(typeRole, 1800); return; }
       setTimeout(typeRole, 80);
     } else {
-      tel.textContent = word.slice(0, tci - 1);
-      tci--;
+      tel.textContent = word.slice(0, tci - 1); tci--;
       if (tci === 0) { tdeleting = false; tri = (tri + 1) % typedRoles.length; setTimeout(typeRole, 300); return; }
       setTimeout(typeRole, 45);
     }
   }
-  setTimeout(typeRole, 1200);
+  setTimeout(typeRole, 600);
+
+  // ── SCROLL OBSERVER ──
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    function observeAll() {
+      document.querySelectorAll('.fade-up, .scale-in').forEach(function(el) {
+        obs.observe(el);
+      });
+    }
+
+    // observe now + whenever a section becomes visible
+    observeAll();
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        setTimeout(observeAll, 80);
+      });
+    });
+  })();
 
 });
 </script>
